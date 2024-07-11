@@ -20,9 +20,17 @@ class FoodTile extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(food.ImagePath, height: 140),
-            Text(food.name,
-            style: GoogleFonts.acme(fontSize: 20),
+            Text(
+              food.name,
+              style: GoogleFonts.acme(fontSize: 20),
             ),
+            SizedBox(width: 160, 
+            child: Row(children: [
+              Text('\$${food.price}'), // food price 
+
+              const Icon(Icons.star),
+              Text(food.rating), // food rating 
+            ],),)
             ],
           ),
     );

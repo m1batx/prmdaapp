@@ -6,19 +6,20 @@ import 'pages/home_page.dart';
 import 'package:prmda/pages/krevitki_menu.dart';
 import 'package:prmda/pages/koritsa_menu.dart';
 import 'package:prmda/pages/gavydina_menu.dart';
-import 'package:prmda/pages/o_nas.dart';
-//import 'pages/entry_animation_page.dart';
+
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(), // Start with the entry animation page
+      home: const HomePage(), // Start with the entry animation page
       routes: {
         '/homepage': (context) => const HomePage(),
         '/regstrationpage': (context) => const RegstrPage(),

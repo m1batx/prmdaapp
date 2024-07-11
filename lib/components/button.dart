@@ -18,19 +18,19 @@ class MyButton extends StatelessWidget {
       child: Container(
       
         decoration: BoxDecoration(color: Colors.yellow, borderRadius: BorderRadius.circular(40)),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               text,
-              style: GoogleFonts.acme(
+              style: GoogleFonts.pacifico(
                 fontSize: 12,
-                color:Colors.grey,
+                color:const Color.fromARGB(255, 0, 0, 0),
               )
               ),
               const SizedBox(width: 10),
-              Icon(Icons.arrow_forward, color: Colors.white),
+              const Icon(Icons.arrow_forward, color: Colors.white),
       
         ],) 
       ),
