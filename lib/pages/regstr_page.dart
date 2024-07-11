@@ -10,6 +10,6 @@ class RegstrPage extends StatefulWidget {
 class _RegstrPageState extends State<RegstrPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }
