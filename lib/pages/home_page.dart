@@ -3,6 +3,7 @@ import 'package:prmda/components/button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prmda/components/food_tile.dart';
 import 'package:prmda/models/food.dart';
+import 'package:prmda/pages/food_details_page.dart';
 
 
 
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<int> index = [];
 
     List foodmenu = [
     //hits меню
@@ -21,28 +23,39 @@ class _HomePageState extends State<HomePage> {
       name: "Класически", 
       ImagePath: 'lib/images/angle_1/classic.jpg', 
       rating: "4.9", 
-      price: "250"
+      price: "250",
+      Descraption: "Класически desc.."
       ),
     
     Food(
       name: "барбикию соус", 
       ImagePath: 'lib/images/angle_1/BBQ.jpg', 
       rating: "4.9", 
-      price: "280"
+      price: "280",
+      Descraption: "барбикию desc.."
       ),
     Food(
-      name: "шаверма сгрбами", 
+      name: "шаверма с грбами", 
       ImagePath: 'lib/images/angle_1/classic with mashroom.jpg', 
       rating: "4.9", 
-      price: "280"
+      price: "280",
+      Descraption: "с грбами desc.."
       ), 
     Food(
       name: "Супер спайси", 
       ImagePath: 'lib/images/angle_1/classic hot.jpg', 
       rating: "4.9", 
-      price: "280"
+      price: "280",
+      Descraption: "Супер спайси desc.."
       ), 
+    
+    //Food(name: )
     ] ;
+
+  // navigator to the item pages 
+  void navigateToFoodDetials(int index){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetailsPage( food: foodmenu[index]),),);
+  }
 
 
   @override
@@ -98,17 +111,55 @@ class _HomePageState extends State<HomePage> {
           
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("Food menu", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
+            child: Text("ОСНОВНОЕ МЕНЮ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
           ),
           const SizedBox(height: 10),
-          Expanded(child: Padding(
-            padding: const EdgeInsets.only(left: 25.0),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: foodmenu.length,
-              itemBuilder: (context, index) => FoodTile(
-                food: foodmenu[index],),),
-          ))
+//padding commented 
+          Expanded(
+  child: Padding(
+    padding: const EdgeInsets.only(left: 25.0),
+    child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: foodmenu.length,
+      
+      itemBuilder: (context, index) => 
+      FoodTile(
+          food: foodmenu[index], 
+          onTap: () => navigateToFoodDetials(index),
+                ),
+                
+                ),
+          ),
+          ),
+          const SizedBox(height: 25),
+
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            margin: const EdgeInsets.only (left: 25, right:  25, bottom: 25 ),
+            padding: const EdgeInsets.all(20) ,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+              Row(children: [Image.asset('lib/images/angle_1/v pite .jpg', height: 60,),
+              const SizedBox(width: 20),
+
+              Column(children: [
+                Text("запуска", style: GoogleFonts.acme(fontSize: 16),),
+
+                const SizedBox(height: 10,),
+
+                const Text('s21.00',)
+              ],),],), 
+              
+              const Icon(Icons.favorite_outline, color: Colors.grey, size: 28,
+              ),
+
+
+            ],)
+          )
         ],
       ),
     );
