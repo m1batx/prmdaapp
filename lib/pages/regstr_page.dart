@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/services/firestore.dart';
 
 class RegstrPage extends StatefulWidget {
   @override
@@ -6,11 +8,11 @@ class RegstrPage extends StatefulWidget {
 }
 
 class _RegstrPageState extends State<RegstrPage> {
-  
   String _email = '', _password = '';
   
   @override
   Widget build(BuildContext context) {
+    final FirestoreService firestoreService = FirestoreService();
     return Scaffold(
       appBar: AppBar(
         title: Text('Register Page'),
@@ -35,8 +37,15 @@ class _RegstrPageState extends State<RegstrPage> {
                 });
               },
               decoration: InputDecoration(hintText: 'Enter your password'),
+            ),
+            ElevatedButton(
+              onPressed: ()  {
+                firestoreService.addUser(
+                     _email,  _password);
+              },
+              child: Text('Register'),
             )
-            
+                        
           ],
         ),
       ),
