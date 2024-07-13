@@ -15,7 +15,11 @@ class _RegstrPageState extends State<RegstrPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD
         title: const Text('Register Page'),
+=======
+        title: Text('Register Page'),
+>>>>>>> f2750c0042dbd9d48365cc96f6b983a3e1841705
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -27,7 +31,11 @@ class _RegstrPageState extends State<RegstrPage> {
                   _email = value;
                 });
               },
+<<<<<<< HEAD
               decoration: const InputDecoration(hintText: 'Enter your email'),
+=======
+              decoration: InputDecoration(hintText: 'Enter your email'),
+>>>>>>> f2750c0042dbd9d48365cc96f6b983a3e1841705
             ),
             TextField(
               obscureText: true,
@@ -36,7 +44,11 @@ class _RegstrPageState extends State<RegstrPage> {
                   _password = value;
                 });
               },
+<<<<<<< HEAD
               decoration: const InputDecoration(hintText: 'Enter your password'),
+=======
+              decoration: InputDecoration(hintText: 'Enter your password'),
+>>>>>>> f2750c0042dbd9d48365cc96f6b983a3e1841705
             )
             
           ],

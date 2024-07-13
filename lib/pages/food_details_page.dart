@@ -101,7 +101,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         //price
-                        Text("\₽${widget.food.price}",
+                        Text("₽${widget.food.price}",
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -114,7 +114,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                           //min button
 
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.grey,
                               shape: BoxShape.circle),
                               
@@ -131,7 +131,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                             width: 40,
                             child: Center(
                               child: Text(quantityCount.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18
@@ -141,7 +141,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 
                           // add button 
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.grey,
                               shape: BoxShape.circle),
                               
