@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_auth: ^3.1.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -66,7 +67,7 @@ flutter:
       - lib/images/YANDEX/
       - lib/images/logo.png
 
-
+  
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

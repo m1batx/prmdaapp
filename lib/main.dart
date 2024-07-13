@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       home: const HomePage(), // Start with the entry animation page
       routes: {
         '/homepage': (context) => const HomePage(),
-        '/regstrationpage': (context) => const RegstrPage(),
+        '/regstrationpage': (context) =>  RegstrPage(),
         '/SosiskiMenu': (context) => const SosiskiMenu(),
         '/KrevitkiMenu': (context) => const KrevitkiMenu(),
         '/KoritsaMenu': (context) => const KoritsaMenu(),
