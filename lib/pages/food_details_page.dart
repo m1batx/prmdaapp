@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prmda/components/button.dart';
 import '../models/food.dart';
 class FoodDetailsPage extends StatefulWidget {
   final Food food;
@@ -29,7 +30,9 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
       });
     }
 
+    //add to cart
 
+  void addToCart(){}
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +159,11 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                       ],)
                       
                       ],
-                    )
+                    ),
+                    const SizedBox(height: 20),
+                     
+
+                    MyButton(text: "add to cart", onTap: addToCart)
 
                 ],),
               )
