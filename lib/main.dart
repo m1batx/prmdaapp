@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/o_nas.dart';
 import 'package:prmda/pages/sosiski_menu.dart';
 import 'pages/regstr_page.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
       home: const HomePage(), // Start with the entry animation page
       routes: {
         '/homepage': (context) => const HomePage(),
-        '/regstrationpage': (context) =>  RegstrPage(),
+        '/regstrationpage': (context) => const RegstrPage(),
+        '/login': (context) =>  const LoginPage(),
         '/SosiskiMenu': (context) => const SosiskiMenu(),
         '/KrevitkiMenu': (context) => const KrevitkiMenu(),
         '/KoritsaMenu': (context) => const KoritsaMenu(),

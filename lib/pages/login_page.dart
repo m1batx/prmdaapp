@@ -4,48 +4,39 @@ import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
 import 'package:prmda/components/my_textfield.dart';
 import 'package:prmda/helper/helper_functions.dart';
-class RegstrPage extends StatefulWidget{
+class LoginPage extends StatefulWidget{
 
 
 
-  const RegstrPage({super.key});
+  const LoginPage({super.key});
 
   @override
-  State<RegstrPage> createState() => _RegstrPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegstrPageState extends State<RegstrPage> {
-  final usernameController = TextEditingController();
-
+class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
-  final confirmpasswordController = TextEditingController();
-
-  void register() async{
+  void login() async{
     showDialog(
-        context: context, 
-        builder: (context) => const Center(
-          child: CircularProgressIndicator(),
+      context: context, 
+      builder: (context)=> const Center(
+        child: CircularProgressIndicator(),
+      )
 
-        )
-      );
+    );
 
-      if (passwordController.text!=confirmpasswordController.text){
-        Navigator.pop(context);
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
 
-        displayMessageToUser("Passwords don't match", context);
-      }
-      else{
-        try{
-        UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-        Navigator.pop(context);
-      }on FirebaseAuthException catch (e) {
-        Navigator.pop(context);
-        displayMessageToUser("Error has occured! Try again later", context);
-      }
-      }
+      if (context.mounted) Navigator.pop(context);
+    }
+    on FirebaseAuthException catch (e){
+      Navigator.pop(context);
+      displayMessageToUser("Error has occured! Try later", context);
+    }
   }
 
   @override
@@ -64,20 +55,12 @@ class _RegstrPageState extends State<RegstrPage> {
 
               const SizedBox(height: 25),
               const Text(
-                "REGISTER",
+                "LOG IN",
                 style: TextStyle(fontSize: 20),
               ),
 
-              //username textfield
-              const SizedBox(height: 50),
-              MyTextfield(
-                hintText: "Username",
-                obscureText: false,
-                controller: usernameController,
-              ),
-
               //email textfield
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               MyTextfield(
                 hintText: "Email",
                 obscureText: false,
@@ -92,20 +75,22 @@ class _RegstrPageState extends State<RegstrPage> {
                 controller: passwordController,
               ),
               SizedBox(height: 10),
-              
-              //confirm password textfield
-              SizedBox(height: 10),
-              MyTextfield(
-                hintText: "Confirm password",
-                obscureText: true,
-                controller: confirmpasswordController,
+
+              //forgot email
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "Forgot Password?",
+                  ),
+                ],
               ),
-              
+
               SizedBox(height: 25),
               //sign in button
               MyButton(
-                text: "Register", 
-                onTap: register
+                text: "Login", 
+                onTap: login
               ),
               
               SizedBox(height: 25),
@@ -116,12 +101,12 @@ class _RegstrPageState extends State<RegstrPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Already have an account?"
+                    "Don't have an account?"
                   ),
                   GestureDetector(
-                    onTap: () {Navigator.pushNamed(context,'/login');},
+                    onTap: () {Navigator.pushNamed(context,'/regstrationpage');},
                     child: const Text(
-                      "Log in",
+                      "Register Here",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
