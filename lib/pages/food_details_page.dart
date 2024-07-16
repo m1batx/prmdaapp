@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prmda/components/button.dart';
 import '../models/food.dart';
 class FoodDetailsPage extends StatefulWidget {
   final Food food;
@@ -10,6 +11,29 @@ class FoodDetailsPage extends StatefulWidget {
 }
 
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
+    //quantity
+    int quantityCount = 0 ;
+
+    //decrement
+    void decrementQuanitity(){
+      setState(() {
+        quantityCount --;
+      });
+    }
+
+    //increment
+    void incrementQuantity(){
+      setState(() {
+        setState(() {
+          quantityCount ++;
+        });
+      });
+    }
+
+    //add to cart
+
+  void addToCart(){}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,14 +55,14 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   const SizedBox(height: 25),
               
                   Row(children: [
-                    Icon(Icons.star,
+                    const Icon(Icons.star,
                     color: Colors.yellow,
                     ),
                     const SizedBox(width: 10),
               
                     Text(
                       widget.food.rating,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold
                       ),
@@ -51,7 +75,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                     style: GoogleFonts.acme(fontSize: 28),
                   ),
                   const SizedBox(height: 25),
-                  Text(
+                  const Text(
                     "Descraption",
                     style: TextStyle(
                       color: Colors.grey,
@@ -61,7 +85,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   ),
                   const SizedBox(height: 10),
                   Text(widget.food.Descraption,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
                     height: 2,
@@ -77,21 +101,69 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("\$"+ widget.food.price,
-                        style: TextStyle(
+                        //price
+                        Text("₽${widget.food.price}",
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
 
-                        ),)
-                      /*Row(
+                        ),),
+                        // quantity 
+                      Row(
                         children: [
+                          //min button
 
-                      ],)*/
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.circle),
+                              
+                            child: IconButton(
+                              icon: const Icon(Icons.remove, 
+                              color: Colors.white,),
+                          onPressed: decrementQuanitity,),
+                          ),
+
+                          
+
+                          //quantity 
+                          SizedBox(
+                            width: 40,
+                            child: Center(
+                              child: Text(quantityCount.toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18
+                              ),),
+                            ),
+                          ),
+
+                          // add button 
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.circle),
+                              
+                            child: IconButton(
+                              icon: const Icon(Icons.add, 
+                              color: Colors.white,),
+                          onPressed: incrementQuantity,),
+                          )
+          
+
+
+                      ],)
                       
                       ],
-                    )
+                    ),
+                    const SizedBox(height: 20),
+                     
+
+                    MyButton(text: "add to cart", onTap: addToCart)
 
                 ],),
               )
