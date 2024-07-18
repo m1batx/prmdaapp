@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                    Container(
                     alignment: Alignment.topCenter, // Adjust this to control button position
                     height: 50, // Control the height as needed
-                    child: MyButton(text: 'заргистриватся', onTap: () {Navigator.pushNamed(context,'/login');}),),
+                    child: MyButton(text: 'заргистриватся', onTap: () {Navigator.pushNamed(context,'/regstrationpage');}),),
 
                     
                   ],
