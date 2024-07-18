@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
@@ -41,7 +40,7 @@ class _RegstrPageState extends State<RegstrPage> {
         try{
         UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
         Navigator.pop(context);
-      }on FirebaseAuthException catch (e) {
+      }on FirebaseAuthException {
         Navigator.pop(context);
         displayMessageToUser("Error has occured! Try again later", context);
       }
@@ -57,7 +56,7 @@ class _RegstrPageState extends State<RegstrPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.person,
                 size: 80,
               ),
@@ -85,37 +84,37 @@ class _RegstrPageState extends State<RegstrPage> {
               ),
 
               //password textfield
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               MyTextfield(
                 hintText: "Password",
                 obscureText: true,
                 controller: passwordController,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               
               //confirm password textfield
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               MyTextfield(
                 hintText: "Confirm password",
                 obscureText: true,
                 controller: confirmpasswordController,
               ),
               
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               //sign in button
               MyButton(
                 text: "Register", 
                 onTap: register
               ),
               
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
 
               //don't have an account? Register here
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Already have an account?"
                   ),
                   GestureDetector(

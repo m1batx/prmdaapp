@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
@@ -33,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
       if (context.mounted) Navigator.pop(context);
     }
-    on FirebaseAuthException catch (e){
+    on FirebaseAuthException {
       Navigator.pop(context);
       displayMessageToUser("Error has occured! Try later", context);
     }
@@ -48,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.person,
                 size: 80,
               ),
@@ -68,16 +67,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               //password textfield
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               MyTextfield(
                 hintText: "Password",
                 obscureText: true,
                 controller: passwordController,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               //forgot email
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
@@ -86,21 +85,21 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
 
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               //sign in button
               MyButton(
                 text: "Login", 
                 onTap: login
               ),
               
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
 
 
               //don't have an account? Register here
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Don't have an account?"
                   ),
                   GestureDetector(
