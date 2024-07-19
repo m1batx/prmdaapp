@@ -16,41 +16,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<int> index = [];
-
-    List foodmenu = [
-    //hits меню
-    Food(
-      name: "Класически", 
-      ImagePath: 'lib/images/angle_1/classic.jpg', 
-      rating: "4.9", 
-      price: "250",
-      Descraption: "Класически desc.."
-      ),
+  
     
-    Food(
-      name: "барбикию соус", 
-      ImagePath: 'lib/images/angle_1/BBQ.jpg', 
-      rating: "4.9", 
-      price: "280",
-      Descraption: "барбикию desc.."
-      ),
-    Food(
-      name: "шаверма с грбами", 
-      ImagePath: 'lib/images/angle_1/classic with mashroom.jpg', 
-      rating: "4.9", 
-      price: "280",
-      Descraption: "с грбами desc.."
-      ), 
-    Food(
-      name: "Супер спайси", 
-      ImagePath: 'lib/images/angle_1/classic hot.jpg', 
-      rating: "4.9", 
-      price: "280",
-      Descraption: "Супер спайси desc.."
-      ), 
-    
-    //Food(name: )
-    ] ;
 
   // navigator to the item pages 
   void navigateToFoodDetials(int index){
