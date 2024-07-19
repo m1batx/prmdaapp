@@ -28,22 +28,42 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 254, 253),
-      appBar: AppBar( backgroundColor: Colors.transparent, elevation: 0, leading: const Icon(Icons.menu,), title: const Stack(
-      children: [
-        Center(
-          child: Padding(
-            padding: EdgeInsets.only(right: 60.0), // Adjust the padding to move the logo
-            child: CircleAvatar(
-              radius: 20, // Adjust the radius as needed
-              backgroundColor: Colors.transparent, // Background color of the CircleAvatar
-              backgroundImage: AssetImage('lib/images/logo.png'), // Local image asset
+      backgroundColor: const Color.fromARGB(255, 248, 246, 244),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: const Icon(Icons.menu),
+        title: const Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: EdgeInsets.only(right: 20.0), // Adjust the padding to move the logo
+                child: CircleAvatar(
+                  radius: 20, // Adjust the radius as needed
+                  backgroundColor: Colors.transparent, // Background color of the CircleAvatar
+                  backgroundImage: AssetImage('lib/images/logo.png'), // Local image asset
+                ),
+              ),
+            ),
+            Spacer(),
+            ClipRRect()
+          ],
+        ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const RegstrPage()),
+              );
+            },
+            child: const Padding(
+              padding: EdgeInsets.only(right: 16.0), // Adjust padding if needed
+              child: Icon(Icons.login), // Login icon on the right side
             ),
           ),
-        ),
-      ],
-    ),
-     ),
+        ],
+      ),
        //appbar above should be
       body: Column(
         children: [
