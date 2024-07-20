@@ -61,7 +61,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                     const SizedBox(width: 10),
               
                     Text(
-                      widget.food.rating,
+                      widget.food.meatType ,
                       style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold
@@ -71,7 +71,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    widget.food.name,
+                    widget.food.name ,
                     style: GoogleFonts.acme(fontSize: 28),
                   ),
                   const SizedBox(height: 25),
@@ -84,7 +84,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                       ),
                   ),
                   const SizedBox(height: 10),
-                  Text(widget.food.Descraption,
+                  Text(widget.food.Description,
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 14,

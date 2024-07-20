@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prmda/components/food_tile.dart';
+import 'package:prmda/models/food.dart';
+import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
+import 'package:prmda/services/firestore.dart';
 
 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
+  
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -17,6 +20,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int indexCategory = 0;
   List<int> index = [];
+  final FirestoreService _firestoreService = FirestoreService();
+  late Stream<List<Food>> _foodStream;
+
+  @override
+  void initState() {
+    super.initState();
+    _foodStream = _firestoreService.getFoods();
+  }
 
   Widget search() {
     return Container(
@@ -97,120 +108,131 @@ class _HomePageState extends State<HomePage> {
 
 
   Widget gridFood() {
-    return GridView.builder(
-      itemCount: dummyFoods.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(16),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
-        mainAxisExtent: 261,
-      ),
-      itemBuilder: (context, index) {
-        Food food = dummyFoods[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return DetailPage(food: food);
-            }));
-          },
-          child: Container(
-            height: 261,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 16),
-                    Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(120),
-                        child: Image.asset(
-                          food.image,
-                          width: 120,
-                          height: 120,
-                          fit: BoxFit.cover,
+  return StreamBuilder<List<Food>>(
+    stream: _foodStream,
+    builder: (context, snapshot) {
+      if (snapshot.hasError) {
+        return Text('Error: ${snapshot.error}');
+      }
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+      }
+      final foods = snapshot.data!;
+      return GridView.builder(
+        itemCount: foods.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(16),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+          mainAxisExtent: 261,
+        ),
+        itemBuilder: (context, index) {
+          final food = foods[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return FoodDetailsPage(food: food);
+              }));
+            },
+            child: Container(
+              height: 261,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 16),
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(120),
+                          child: Image.network(
+                            food.ImagePath,
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        food.name,
-                        style: Theme.of(context).textTheme.headline6,
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        children: [
-                          Text(
-                            food.cookingTime,
-                            style: TextStyle(color: Colors.grey[600]),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.star, color: Colors.amber, size: 18),
-                          const SizedBox(width: 4),
-                          Text(
-                            food.rate.toString(),
-                            style: TextStyle(color: Colors.grey[600]),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        '\$${food.price}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                      const SizedBox(height: 16),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          food.name,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const Positioned(
-                  top: 12,
-                  right: 12,
-                  child: Icon(Icons.favorite_border, color: Colors.grey),
-                ),
-                const Align(
-                  alignment: Alignment.bottomRight,
-                  child: Material(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16),
-                    ),
-                    child: InkWell(
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Icon(Icons.add, color: Colors.white),
+                      const SizedBox(height: 4),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          children: [
+                            Text(
+                              food.meatType,
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                            const Spacer(),
+                            const Icon(Icons.star, color: Colors.amber, size: 18),
+                            const SizedBox(width: 4),
+                            Text(
+                              food.rating.toString(),
+                              style: TextStyle(color: Colors.grey[600]),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          '\$${food.price}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Positioned(
+                    top: 12,
+                    right: 12,
+                    child: Icon(Icons.favorite_border, color: Colors.grey),
+                  ),
+                  const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Material(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16),
+                        bottomRight: Radius.circular(16),
+                      ),
+                      child: InkWell(
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(Icons.add, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      },
-    );
-  }
+          );
+        },
+      );
+    },
+  );
 }
+  
 
   // navigator to the item pages 
   void navigateToFoodDetials(int index){
@@ -297,21 +319,25 @@ class _HomePageState extends State<HomePage> {
           Expanded(
   child: Padding(
     padding: const EdgeInsets.only(left: 25.0),
-    child: ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: foodmenu.length,
-      
-      itemBuilder: (context, index) => 
-      FoodTile(
-          food: foodmenu[index], 
-          onTap: () => navigateToFoodDetials(index),
-                ),
-                
-                ),
-          ),
-          ),
-          const SizedBox(height: 25),
-
+    child: StreamBuilder<List<Food>>(
+      stream: _foodStream,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+        final foodMenu = snapshot.data!;
+        return ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: foodMenu.length,
+          itemBuilder: (context, index) =>
+            FoodTile(
+              food: foodMenu[index],
+              onTap: () => navigateToFoodDetials(index),
+            ),
+        );}))),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey,

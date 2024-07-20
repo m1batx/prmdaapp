@@ -50,7 +50,7 @@ class FoodTile extends StatelessWidget {
                      const Icon(Icons.star, color: Colors.yellow),
                     
                     Text(
-                      food.rating,
+                      food.Description,
                       style: const TextStyle(color: Colors.grey),
                     ),
                   ],
