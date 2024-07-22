@@ -5,7 +5,6 @@ class Food {
   int id;
   String name;
   String ImagePath;
-  double rating;
   int price;
   String Description;
   String meatType;
@@ -17,7 +16,6 @@ class Food {
       required this.id, 
       required this.name,
       required this.ImagePath,
-      required this.rating, 
       required this.price ,
       required this.Description,
       required this.meatType,
@@ -26,7 +24,6 @@ class Food {
   
   String get _name => name;
   String get _ImagePath => ImagePath;
-  double get _rating => rating;
   int get _price => price;  
   String get _Description => Description;
   String get _meatType => meatType;
@@ -37,7 +34,6 @@ class Food {
       id: data['id'],
       name: data['name'],
       ImagePath: data['imagePath'],
-      rating: data['rating'],
       price: data['price'],
       Description: data['Description'],
       meatType: data['meatType'],

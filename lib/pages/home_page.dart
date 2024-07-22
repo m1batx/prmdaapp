@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:prmda/components/button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prmda/components/food_tile.dart';
@@ -18,15 +21,19 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
+  
   int indexCategory = 0;
   List<int> index = [];
   final FirestoreService _firestoreService = FirestoreService();
+  
   late Stream<List<Food>> _foodStream;
-
+  
   @override
   void initState() {
     super.initState();
+    
     _foodStream = _firestoreService.getFoods();
+    
   }
 
   Widget search() {
@@ -35,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.fromLTRB(8, 2, 6, 2),
       decoration: BoxDecoration(
-        color: Colors.green[50],
+        color: Colors.red[50],
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -44,14 +51,14 @@ class _HomePageState extends State<HomePage> {
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: const Icon(Icons.search, color: Colors.green),
-                hintText: 'Search food',
+                prefixIcon: const Icon(Icons.search, color: Colors.red),
+                hintText: 'Поиск',
                 hintStyle: TextStyle(color: Colors.grey[600]),
               ),
             ),
           ),
           Material(
-            color: Colors.green,
+            color: Colors.red,
             borderRadius: BorderRadius.circular(10),
             child: InkWell(
               onTap: () {},
@@ -68,7 +75,20 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
+  Widget listFood(List<Food> foods){
+    return ListView.builder(
+          itemCount: foods.length,
+          itemBuilder: (BuildContext context, int index){
+            return Dismissible(
+              key: Key(foods[index].name), 
+              child: Card(
+                child: ListTile(
+                  title: Text(foods[index].name),
+                ),
+              ));
+          },
+        );
+  }
 
   Widget categories() {
     List list = ['Шаверма', 'Бургеры', 'Фалафель', 'Хот-доги', 'Напитки'];
@@ -95,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                 list[index],
                 style: TextStyle(
                   fontSize: 22,
-                  color: indexCategory == index ? Colors.green : Colors.grey,
+                  color: indexCategory == index ? Colors.red : Colors.grey,
                   fontWeight: indexCategory == index ? FontWeight.bold : null,
                 ),
               ),
@@ -106,137 +126,127 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   Widget gridFood() {
-  return StreamBuilder<List<Food>>(
-    stream: _foodStream,
-    builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Text('Error: ${snapshot.error}');
-      }
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return CircularProgressIndicator();
-      }
-      final foods = snapshot.data!;
-      return GridView.builder(
-        itemCount: foods.length,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          mainAxisExtent: 261,
-        ),
-        itemBuilder: (context, index) {
-          final food = foods[index];
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return FoodDetailsPage(food: food);
-              }));
-            },
-            child: Container(
-              height: 261,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(16),
+    return Container(
+      height: 400,
+      child:StreamBuilder(
+          stream: _firestoreService.getFoodStream(),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) return const Text('Loading...');
+            final foods = snapshot.data!.docs;
+            return GridView.builder(
+              itemCount: foods.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(16),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                mainAxisExtent: 261,
               ),
-              child: Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 16),
-                      Center(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(120),
-                          child: Image.network(
-                            food.ImagePath,
-                            width: 120,
-                            height: 120,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          food.name,
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
+              itemBuilder: (context, index) {
+                final food = foods[index];
+                return GestureDetector(
+                  onTap: () => navigateToFoodDetials(food['id']),
+                  child: Container(
+                    height: 261,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              food.meatType,
-                              style: TextStyle(color: Colors.grey[600]),
+                            const SizedBox(height: 16),
+                            Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(120),
+                                child: Image.network(
+                                  food['ImagePath'],
+                                  width: 120,
+                                  height: 120,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                            const Spacer(),
-                            const Icon(Icons.star, color: Colors.amber, size: 18),
-                            const SizedBox(width: 4),
-                            Text(
-                              food.rating.toString(),
-                              style: TextStyle(color: Colors.grey[600]),
+                            const SizedBox(height: 16),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                food['name'],
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    food['meatType'],
+                                    style: TextStyle(color: Colors.grey[600]),
+                                  ),
+                                  const Spacer(),
+                                  const Icon(Icons.star, color: Colors.amber, size: 18),
+                                  const SizedBox(width: 4),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Text(
+                                '${food['price']} ₽',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          '\$${food.price}',
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                        const Positioned(
+                          top: 12,
+                          right: 12,
+                          child: Icon(Icons.favorite_border, color: Colors.grey),
+                        ),
+                        const Align(
+                          alignment: Alignment.bottomRight,
+                          child: Material(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              bottomRight: Radius.circular(16),
+                            ),
+                            child: InkWell(
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Icon(Icons.add, color: Colors.white),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Positioned(
-                    top: 12,
-                    right: 12,
-                    child: Icon(Icons.favorite_border, color: Colors.grey),
-                  ),
-                  const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Material(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16),
-                        bottomRight: Radius.circular(16),
-                      ),
-                      child: InkWell(
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Icon(Icons.add, color: Colors.white),
-                        ),
-                      ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          );
-        },
-      );
-    },
-  );
-}
+                );
+              },
+            );
+          },
+        ));
+  }
+
   
 
   // navigator to the item pages 
-  void navigateToFoodDetials(int index){
-    //Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetailsPage( food: foodmenu[index]),),);
+  void navigateToFoodDetials(int index) {
+    var food;
+    Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetailsPage( food: food[index]),),);
   }
 
 
@@ -302,7 +312,7 @@ class _HomePageState extends State<HomePage> {
                     child: MyButton(text: 'Авторизация', onTap: () {Navigator.pushNamed(context,'/login');}),),
                     
                   ],
-                )
+                ),
 
             ],),
 
@@ -315,29 +325,9 @@ class _HomePageState extends State<HomePage> {
             child: Text("ОСНОВНОЕ МЕНЮ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
           ),
           const SizedBox(height: 10),
-//padding commented 
-          Expanded(
-  child: Padding(
-    padding: const EdgeInsets.only(left: 25.0),
-    child: StreamBuilder<List<Food>>(
-      stream: _foodStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        }
-        final foodMenu = snapshot.data!;
-        return ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: foodMenu.length,
-          itemBuilder: (context, index) =>
-            FoodTile(
-              food: foodMenu[index],
-              onTap: () => navigateToFoodDetials(index),
-            ),
-        );}))),
+          search(),
+          //categories(),
+          gridFood(),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey,
