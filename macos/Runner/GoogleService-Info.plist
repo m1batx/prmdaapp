@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:593037562166:ios:c35cd499543d4383306397</string>
+	<key>DATABASE_URL</key>
+	<string>https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>
