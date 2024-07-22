@@ -13,7 +13,7 @@ class FirestoreService{
 
     return foodStream;
   }
-
+  
   Stream<List<Food>> getFoods() {
   return getFoodStream().map((querySnapshot) {
     return querySnapshot.docs.map((docSnapshot) {
