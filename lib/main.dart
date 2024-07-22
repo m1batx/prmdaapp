@@ -16,6 +16,9 @@ void main() async {
   runApp(const MyApp());
 }
 
+// Your current platform's firebase options
+final FirebaseOptions currentPlatformOptions = DefaultFirebaseOptions.currentPlatform;
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

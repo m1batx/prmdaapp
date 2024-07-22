@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
         return Text('Error: ${snapshot.error}');
       }
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       }
       final foods = snapshot.data!;
       return GridView.builder(
@@ -326,7 +326,7 @@ class _HomePageState extends State<HomePage> {
           return Text('Error: ${snapshot.error}');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
         final foodMenu = snapshot.data!;
         return ListView.builder(
