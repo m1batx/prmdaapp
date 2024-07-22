@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget gridFood() {
     return Container(
-      height: 400,
+      height: 550,
       child:StreamBuilder(
           stream: _firestoreService.getFoodStream(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -137,6 +137,7 @@ class _HomePageState extends State<HomePage> {
             return GridView.builder(
               itemCount: foods.length,
               shrinkWrap: true,
+              scrollDirection: Axis.vertical,
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -148,7 +149,10 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 final food = foods[index];
                 return GestureDetector(
-                  onTap: () => navigateToFoodDetials(food['id']),
+                  onTap: () {
+                    final details = Food(id: food['id'], name: food['name'], ImagePath:food["ImagePath"], price: food["price"], Description: food["Description"], meatType: food["meatType"], category: food["category"]);
+                    navigateToFoodDetials(food:details);
+                  },
                   child: Container(
                     height: 261,
                     decoration: BoxDecoration(
@@ -244,9 +248,8 @@ class _HomePageState extends State<HomePage> {
   
 
   // navigator to the item pages 
-  void navigateToFoodDetials(int index) {
-    var food;
-    Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetailsPage( food: food[index]),),);
+  void navigateToFoodDetials({required Food food}) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetailsPage( food: food),),);
   }
 
 
@@ -292,32 +295,32 @@ class _HomePageState extends State<HomePage> {
        //appbar above should be
       body: Column(
         children: [
-         Container(
-          decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(20)),
-          margin: const EdgeInsets.symmetric(horizontal: 25),
-          padding: const EdgeInsets.all(25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text('заказывайте и на месте забираете', style: GoogleFonts.pacifico(
-                      fontSize: 16,
-                    ),),
+        //  Container(
+        //   decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(20)),
+        //   margin: const EdgeInsets.symmetric(horizontal: 25),
+        //   padding: const EdgeInsets.all(25),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         Column(
+        //           children: [
+        //             Text('заказывайте и на месте забираете', style: GoogleFonts.pacifico(
+        //               fontSize: 16,
+        //             ),),
                    
-                  const SizedBox(height: 25), // Add space between text and button
-                   Container(
-                    alignment: Alignment.topCenter, // Adjust this to control button position
-                    height: 50, // Control the height as needed
-                    child: MyButton(text: 'Авторизация', onTap: () {Navigator.pushNamed(context,'/login');}),),
+        //           const SizedBox(height: 25), // Add space between text and button
+        //            Container(
+        //             alignment: Alignment.topCenter, // Adjust this to control button position
+        //             height: 50, // Control the height as needed
+        //             child: MyButton(text: 'Авторизация', onTap: () {Navigator.pushNamed(context,'/login');}),),
                     
-                  ],
-                ),
+        //           ],
+        //         ),
 
-            ],),
+        //     ],),
 
-         ), // Spacer at the top
-          const SizedBox(height: 20),
+        //  ), // Spacer at the top
+        //   const SizedBox(height: 20),
           
           
           const Padding(
@@ -328,33 +331,33 @@ class _HomePageState extends State<HomePage> {
           search(),
           //categories(),
           gridFood(),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            margin: const EdgeInsets.only (left: 25, right:  25, bottom: 25 ),
-            padding: const EdgeInsets.all(20) ,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-              Row(children: [Image.asset('lib/images/angle_1/v pite .jpg', height: 60,),
-              const SizedBox(width: 20),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     color: Colors.grey,
+          //     borderRadius: BorderRadius.circular(20),
+          //   ),
+          //   margin: const EdgeInsets.only (left: 25, right:  25, bottom: 25 ),
+          //   padding: const EdgeInsets.all(20) ,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //     Row(children: [Image.asset('lib/images/angle_1/v pite .jpg', height: 60,),
+          //     const SizedBox(width: 20),
 
-              Column(children: [
-                Text("запуска", style: GoogleFonts.acme(fontSize: 16),),
+          //     Column(children: [
+          //       Text("запуска", style: GoogleFonts.acme(fontSize: 16),),
 
-                const SizedBox(height: 10,),
+          //       const SizedBox(height: 10,),
 
-                const Text('s21.00',)
-              ],),],), 
+          //       const Text('s21.00',)
+          //     ],),],), 
               
-              const Icon(Icons.favorite_outline, color: Colors.grey, size: 28,
-              ),
+          //     const Icon(Icons.favorite_outline, color: Colors.grey, size: 28,
+          //     ),
 
 
-            ],)
-          )
+          //   ],)
+          // )
         ],
       ),
     );
