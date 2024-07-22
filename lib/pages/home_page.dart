@@ -329,7 +329,7 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 10),
           search(),
-          //categories(),
+          categories(),
           gridFood(),
           // Container(
           //   decoration: BoxDecoration(
