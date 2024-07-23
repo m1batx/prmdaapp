@@ -76,7 +76,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   ),
                   const SizedBox(height: 25),
                   const Text(
-                    "Descraption",
+                    "Описание",
                     style: TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.bold,
