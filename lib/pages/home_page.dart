@@ -127,42 +127,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget gridFood() {
-<<<<<<< HEAD
-  return StreamBuilder<List<Food>>(
-    stream: _foodStream,
-    builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Text('Error: ${snapshot.error}');
-      }
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return const CircularProgressIndicator();
-      }
-      final foods = snapshot.data!;
-      return GridView.builder(
-        itemCount: foods.length,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          mainAxisExtent: 261,
-        ),
-        itemBuilder: (context, index) {
-          final food = foods[index];
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return FoodDetailsPage(food: food);
-              }));
-            },
-            child: Container(
-              height: 261,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(16),
-=======
     return Container(
       height: 550,
       child:StreamBuilder(
@@ -181,7 +145,6 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
                 mainAxisExtent: 261,
->>>>>>> refs/remotes/origin/master
               ),
               itemBuilder: (context, index) {
                 final food = foods[index];
@@ -365,43 +328,6 @@ class _HomePageState extends State<HomePage> {
             child: Text("ОСНОВНОЕ МЕНЮ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
           ),
           const SizedBox(height: 10),
-<<<<<<< HEAD
-//padding commented 
-          Expanded(
-  child: Padding(
-    padding: const EdgeInsets.only(left: 25.0),
-    child: StreamBuilder<List<Food>>(
-      stream: _foodStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        }
-        final foodMenu = snapshot.data!;
-        return ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: foodMenu.length,
-          itemBuilder: (context, index) =>
-            FoodTile(
-              food: foodMenu[index],
-              onTap: () => navigateToFoodDetials(index),
-            ),
-        );}))),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            margin: const EdgeInsets.only (left: 25, right:  25, bottom: 25 ),
-            padding: const EdgeInsets.all(20) ,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-              Row(children: [Image.asset('lib/images/angle_1/v pite .jpg', height: 60,),
-              const SizedBox(width: 20),
-=======
           search(),
           //categories(),
           gridFood(),
@@ -417,7 +343,6 @@ class _HomePageState extends State<HomePage> {
           //     children: [
           //     Row(children: [Image.asset('lib/images/angle_1/v pite .jpg', height: 60,),
           //     const SizedBox(width: 20),
->>>>>>> refs/remotes/origin/master
 
           //     Column(children: [
           //       Text("запуска", style: GoogleFonts.acme(fontSize: 16),),
