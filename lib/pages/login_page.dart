@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
 import 'package:prmda/components/my_textfield.dart';
 import 'package:prmda/helper/helper_functions.dart';
+import 'package:prmda/pages/home_page.dart';
 class LoginPage extends StatefulWidget{
 
 
@@ -41,6 +42,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.grey,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(25.0),

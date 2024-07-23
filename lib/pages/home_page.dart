@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prmda/components/food_tile.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
+import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
 import 'package:prmda/services/firestore.dart';
 
@@ -138,7 +140,6 @@ class _HomePageState extends State<HomePage> {
               itemCount: foods.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -246,6 +247,37 @@ class _HomePageState extends State<HomePage> {
   }
 
   
+  CurvedNavigationBar navigateMenu(){
+    return CurvedNavigationBar(
+        backgroundColor: const Color.fromARGB(255, 248, 246, 244),
+        color: Colors.red,
+        animationDuration: const Duration(milliseconds: 300),
+        onTap: (index){
+          if (index==0) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
+          if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
+          if (index==2) Navigator.push(context,MaterialPageRoute(builder: (context) => const RegstrPage()),);
+          if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginPage()),);
+        },
+        items: const [
+          Icon(
+            Icons.home,
+            color: Colors.white,
+            ),
+          Icon(
+            Icons.shopping_cart,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.favorite,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.account_circle,
+            color: Colors.white,
+          )
+
+        ],);
+  }
 
   // navigator to the item pages 
   void navigateToFoodDetials({required Food food}) {
@@ -292,6 +324,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      bottomNavigationBar: navigateMenu(),
        //appbar above should be
       body: Column(
         children: [
@@ -329,7 +362,7 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 10),
           search(),
-          //categories(),
+          categories(),
           gridFood(),
           // Container(
           //   decoration: BoxDecoration(
