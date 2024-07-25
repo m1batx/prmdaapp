@@ -129,8 +129,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget gridFood() {
-    return Container(
-      height: 550,
+    return SizedBox(
+      height: 500,
       child:StreamBuilder(
           stream: _firestoreService.getFoodStream(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -169,12 +169,17 @@ class _HomePageState extends State<HomePage> {
                             Center(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(120),
-                                child: Image.network(
-                                  food['ImagePath'],
-                                  width: 120,
+                                child: Image.asset(
+                                  food["ImagePath"],
                                   height: 120,
-                                  fit: BoxFit.cover,
-                                ),
+                                  width: 120,
+                                  fit: BoxFit.cover,),
+                                // child: Image.network(
+                                //   food['ImagePath'],
+                                //   width: 120,
+                                //   height: 120,
+                                //   fit: BoxFit.cover,
+                                // ),
                               ),
                             ),
                             const SizedBox(height: 16),
@@ -289,6 +294,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 248, 246, 244),
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
