@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:prmda/components/button.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:prmda/components/food_tile.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
+import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/services/firestore.dart';
 
 
@@ -28,13 +24,11 @@ class _HomePageState extends State<HomePage> {
   List<int> index = [];
   final FirestoreService _firestoreService = FirestoreService();
   
-  late Stream<List<Food>> _foodStream;
   
   @override
   void initState() {
     super.initState();
     
-    _foodStream = _firestoreService.getFoods();
     
   }
 
@@ -174,12 +168,6 @@ class _HomePageState extends State<HomePage> {
                                   height: 120,
                                   width: 120,
                                   fit: BoxFit.cover,),
-                                // child: Image.network(
-                                //   food['ImagePath'],
-                                //   width: 120,
-                                //   height: 120,
-                                //   fit: BoxFit.cover,
-                                // ),
                               ),
                             ),
                             const SizedBox(height: 16),
@@ -254,14 +242,14 @@ class _HomePageState extends State<HomePage> {
   
   CurvedNavigationBar navigateMenu(){
     return CurvedNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 248, 246, 244),
+        backgroundColor: Colors.transparent,
         color: Colors.red,
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index){
           if (index==0) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
           if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
           if (index==2) Navigator.push(context,MaterialPageRoute(builder: (context) => const RegstrPage()),);
-          if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginPage()),);
+          if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) =>  UserPage()),);
         },
         items: const [
           Icon(
