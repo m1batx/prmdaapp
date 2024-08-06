@@ -7,6 +7,7 @@ import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
 import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/services/firestore.dart';
+import 'package:prmda/services/notification_services.dart';
 
 
 
@@ -250,6 +251,7 @@ class _HomePageState extends State<HomePage> {
           if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
           if (index==2) Navigator.push(context,MaterialPageRoute(builder: (context) => const RegstrPage()),);
           if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) =>  UserPage()),);
+          NotificationServices().showNotification(title: "Новинка в Меню", body: "Шаверма новинка по скидке!");
         },
         items: const [
           Icon(
