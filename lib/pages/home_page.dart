@@ -1,12 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:prmda/components/button.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:prmda/components/food_tile.dart';
 import 'package:prmda/models/food.dart';
+import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
@@ -77,7 +73,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Widget listFood(List<Food> foods){
+  Widget listFood(List<Food> foods){ //need to explain
     return ListView.builder(
           itemCount: foods.length,
           itemBuilder: (BuildContext context, int index){
@@ -95,7 +91,7 @@ class _HomePageState extends State<HomePage> {
   Widget categories() {
     List list = ['Шаверма', 'Бургеры', 'Фалафель', 'Хот-доги', 'Напитки'];
     return SizedBox(
-      height: 40,
+      height: 70,
       child: ListView.builder(
         itemCount: list.length,
         scrollDirection: Axis.horizontal,
@@ -105,7 +101,9 @@ class _HomePageState extends State<HomePage> {
               indexCategory = index;
               setState(() {});
             },
-            child: Container(
+
+            // top titled category bar 
+            child: Container(  
               padding: EdgeInsets.fromLTRB(
                 index == 0 ? 16 : 16,
                 0,
@@ -129,7 +127,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget gridFood() {
-    return Container(
+    return SizedBox(
       height: 550,
       child:StreamBuilder(
           stream: _firestoreService.getFoodStream(),
@@ -254,7 +252,7 @@ class _HomePageState extends State<HomePage> {
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index){
           if (index==0) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
-          if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
+          if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const CartPage()),);
           if (index==2) Navigator.push(context,MaterialPageRoute(builder: (context) => const RegstrPage()),);
           if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginPage()),);
         },

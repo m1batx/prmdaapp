@@ -30,7 +30,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
       });
     }
 
-    //add to cart
+    //add to  
 
   void addToCart(){}
 
