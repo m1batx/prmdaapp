@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prmda/components/button.dart';
@@ -32,8 +33,20 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 
     //add to  
 
-  void addToCart(){}
+  void addToCart(){}/*
+    //only add to cart if there is somthing to add 
+    if (quantityCount > 0 ){
+      //gett access to shop 
 
+      //add to cart 
+      addToCart(widget.food, quantityCount);
+
+      //let the user know it add successfully 
+      showDialog(context: context, builder: builder)
+
+    }
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(

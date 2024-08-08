@@ -6,7 +6,9 @@ import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
+import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/services/firestore.dart';
+import 'package:prmda/services/notification_services.dart';
 
 
 
@@ -24,13 +26,11 @@ class _HomePageState extends State<HomePage> {
   List<int> index = [];
   final FirestoreService _firestoreService = FirestoreService();
   
-  late Stream<List<Food>> _foodStream;
   
   @override
   void initState() {
     super.initState();
     
-    _foodStream = _firestoreService.getFoods();
     
   }
 
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget gridFood() {
     return SizedBox(
-      height: 550,
+      height: 500,
       child:StreamBuilder(
           stream: _firestoreService.getFoodStream(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -167,12 +167,11 @@ class _HomePageState extends State<HomePage> {
                             Center(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(120),
-                                child: Image.network(
-                                  food['ImagePath'],
-                                  width: 120,
+                                child: Image.asset(
+                                  food["ImagePath"],
                                   height: 120,
-                                  fit: BoxFit.cover,
-                                ),
+                                  width: 120,
+                                  fit: BoxFit.cover,),
                               ),
                             ),
                             const SizedBox(height: 16),
@@ -247,14 +246,15 @@ class _HomePageState extends State<HomePage> {
   
   CurvedNavigationBar navigateMenu(){
     return CurvedNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 248, 246, 244),
+        backgroundColor: Colors.transparent,
         color: Colors.red,
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index){
           if (index==0) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
           if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const CartPage()),);
           if (index==2) Navigator.push(context,MaterialPageRoute(builder: (context) => const RegstrPage()),);
-          if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginPage()),);
+          if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) =>  UserPage()),);
+          NotificationServices().showNotification(title: "Новинка в Меню", body: "Шаверма новинка по скидке!");
         },
         items: const [
           Icon(
@@ -287,6 +287,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 248, 246, 244),
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
