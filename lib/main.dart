@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/o_nas.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(), // Start with the entry animation page
+      home: HomeScreen(), // Start with the entry animation page
       routes: {
         '/homepage': (context) => const HomePage(),
         '/regstrationpage': (context) => const RegstrPage(),
@@ -39,4 +40,5 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+  
 }
