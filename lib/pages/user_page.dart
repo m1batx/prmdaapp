@@ -1,11 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:prmda/pages/home_page.dart';
 import 'package:prmda/pages/login_page.dart';
-import 'package:prmda/pages/regstr_page.dart';
 
 class UserPage extends StatelessWidget{
 
@@ -24,7 +20,10 @@ class UserPage extends StatelessWidget{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title:const Text("Профиль"),
+        title:const Text("Профиль",
+          style: TextStyle(
+            color: Colors.white
+            ),),
         backgroundColor: Colors.red,
       ),
       body: FutureBuilder(
@@ -78,35 +77,7 @@ class UserPage extends StatelessWidget{
           }
         }
       ),
-    bottomNavigationBar:  CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        color: Colors.red,
-        animationDuration: const Duration(milliseconds: 300),
-        onTap: (index){
-          if (index==0) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
-          if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
-          if (index==2) Navigator.push(context,MaterialPageRoute(builder: (context) => const RegstrPage()),);
-          if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) =>  UserPage()),);
-        },
-        items: const [
-          Icon(
-            Icons.home,
-            color: Colors.white,
-            ),
-          Icon(
-            Icons.shopping_cart,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.favorite,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.account_circle,
-            color: Colors.white,
-          )
-
-        ],),
+    
     );
   }
 }

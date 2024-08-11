@@ -1,14 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/models/food.dart';
-import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/food_details_page.dart';
-import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
-import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/services/firestore.dart';
-import 'package:prmda/services/notification_services.dart';
 
 
 
@@ -243,40 +238,6 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  
-  CurvedNavigationBar navigateMenu(){
-    return CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        color: Colors.red,
-        animationDuration: const Duration(milliseconds: 300),
-        onTap: (index){
-          if (index==0) Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
-          if (index==1) Navigator.push(context,MaterialPageRoute(builder: (context) => const CartPage()),);
-          if (index==2) Navigator.push(context,MaterialPageRoute(builder: (context) => const RegstrPage()),);
-          if (index==3) Navigator.push(context,MaterialPageRoute(builder: (context) =>  UserPage()),);
-          NotificationServices().showNotification(title: "Новинка в Меню", body: "Шаверма новинка по скидке!");
-        },
-        items: const [
-          Icon(
-            Icons.home,
-            color: Colors.white,
-            ),
-          Icon(
-            Icons.shopping_cart,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.favorite,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.account_circle,
-            color: Colors.white,
-          )
-
-        ],);
-  }
-
   // navigator to the item pages 
   void navigateToFoodDetials({required Food food}) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetailsPage( food: food),),);
@@ -323,7 +284,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: navigateMenu(),
        //appbar above should be
       body: Column(
         children: [
