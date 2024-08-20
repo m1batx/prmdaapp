@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/restraunt.dart';
-import 'package:prmda/services/firestore.dart';
 
 
 
@@ -18,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   
   int indexCategory = 0;
   List<int> index = [];
-  final FirestoreService _firestoreService = FirestoreService();
+  //final FirestoreService _firestoreService = FirestoreService();
   
   
   @override

@@ -1,9 +1,9 @@
 
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/services/cart_item.dart';
+import 'package:collection/collection.dart';
 
 class Restraunt extends ChangeNotifier{
   final List<Food> _menu = [
@@ -144,7 +144,7 @@ class Restraunt extends ChangeNotifier{
   final List<CartItem> _cart = [];
   //add to Cart
   void addToCart(Food food, List<Addon> selectedAddons){
-    CartItem? cartItem = _cart.firstWhere((item){
+    CartItem? cartItem = _cart.firstWhereOrNull((item){
       bool isSameFood = item.food == food;
       bool isSameAddons = 
         ListEquality().equals(item.selectedAddons, selectedAddons);
@@ -160,7 +160,7 @@ class Restraunt extends ChangeNotifier{
           )
       );
     }
-    // notifyListeners();
+    notifyListeners();
   }
 
   //remove from Cart

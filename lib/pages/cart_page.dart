@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:prmda/components/my_cart_tile.dart';
 import 'package:prmda/restraunt.dart';
+import 'package:prmda/services/cart_item.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
@@ -21,15 +23,14 @@ class CartPage extends StatelessWidget {
           ),
           body:Column(
             children: [
-              Text("data"),
-              Expanded(
+
+              SizedBox(
+                height: 400,
                 child: ListView.builder(
                   itemCount: userCart.length,
                   itemBuilder: (context, index) {
                     final cartItem = userCart[index];
-                    return ListTile(
-                    title: Text(cartItem.food.name),
-                  );
+                    return MyCartTile(cartItem: cartItem);
                   }
                   )
                 ),
