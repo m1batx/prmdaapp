@@ -1,4 +1,4 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'home_page.dart';
 
 class EntryAnimationPage extends StatefulWidget {
@@ -58,7 +58,7 @@ class _EntryAnimationPageState extends State<EntryAnimationPage>
         animation: _animation,
         builder: (context, child) {
           return Container(
-            color: Colors.blue.withOpacity(_animation.value),
+            color: Colors.red.withOpacity(_animation.value),
             child: Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -84,4 +84,3 @@ class _EntryAnimationPageState extends State<EntryAnimationPage>
     );
   }
 }
-*/
