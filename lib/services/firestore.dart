@@ -13,6 +13,12 @@ class FirestoreService{
 
     return foodStream;
   }
+
+  Stream<List<Food>> getFood() {
+    return FirebaseFirestore.instance.collection('food').snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => Food.fromMap(doc.data())).toList();
+    });
+  }
   
   Stream<List<Food>> getFoods() {
   return getFoodStream().map((querySnapshot) {

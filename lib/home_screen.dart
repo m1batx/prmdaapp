@@ -4,8 +4,11 @@ import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/home_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
 import 'package:prmda/pages/user_page.dart';
+import 'package:prmda/services/notification_services.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -24,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
+    NotificationServices().showNotification();
   }
 
   @override

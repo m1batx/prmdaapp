@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prmda/components/button.dart';
+import 'package:prmda/main.dart';
+import 'package:prmda/restraunt.dart';
+import 'package:provider/provider.dart';
 import '../models/food.dart';
 class FoodDetailsPage extends StatefulWidget {
   final Food food;
-  const FoodDetailsPage({super.key, required this.food});
+  final Map<Addon, bool> selectedAddon ={};
+  FoodDetailsPage({
+    super.key, 
+    required this.food
+    })
+    {
+      for (Addon addon in food.availableAddons){
+        selectedAddon[addon] = false;
+      }
+    }
+    
+
+
 
   @override
   State<FoodDetailsPage> createState() => _FoodDetailsPageState();
+  
 }
 
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
@@ -32,7 +48,19 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 
     //add to  
 
-  void addToCart(){}/*
+  void addToCart(Food food, Map<Addon, bool> selectedAddons){
+
+    Navigator.pop(context);
+    List<Addon> currentlySelectAddons = [];
+    for (Addon addon in widget.food.availableAddons){
+      if (widget.selectedAddon[addon] == true){
+        currentlySelectAddons.add(addon);
+      }
+    }
+    context.read<Restraunt>().addToCart(food, currentlySelectAddons);
+    //context.read<Restraunt>().addToCart(food, currentlySelectAddons);
+
+  }/*
     //only add to cart if there is somthing to add 
     if (quantityCount > 0 ){
       //gett access to shop 
@@ -48,140 +76,111 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 */
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.grey,
-      ),
-      body: Column(
-        children: [
-        // list view food deatials
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: ListView(
-                children: [
-                  Image.asset(widget.food.ImagePath,
-                  height: 200,),
-                  const SizedBox(height: 25),
-              
-                  Row(children: [
-                    const Icon(Icons.star,
-                    color: Colors.yellow,
-                    ),
-                    const SizedBox(width: 10),
-              
-                    Text(
-                      widget.food.meatType ,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ],
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    widget.food.name ,
-                    style: GoogleFonts.acme(fontSize: 28),
-                  ),
-                  const SizedBox(height: 25),
-                  const Text(
-                    "Описание",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18
-                      ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(widget.food.Description,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                    height: 2,
-                  )
-                  ),
-                ],
-                ),
-            ),
-              ),
-              Container(
-                color: const Color.fromARGB(255, 145, 34, 26),
-                padding: const EdgeInsets.all(25),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        //price
-                        Text("₽${widget.food.price}",
+    return Stack(
+      children: [
+        Scaffold(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(widget.food.ImagePath,),
+                Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Column( // Outer Column
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        getMeatTypeString(widget.food.meatType),
                         style: const TextStyle(
-                          color: Colors.white,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                      ),
+                      Text(
+                        widget.food.name,
+                        style: GoogleFonts.acme(fontSize: 28),
+                        textAlign: TextAlign.left, // You can remove this now
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        "Описание",
+                        style: TextStyle(
+                          color: Colors.grey,
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
-
-                        ),),
-                        // quantity 
-                      Row(
-                        children: [
-                          //min button
-
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              shape: BoxShape.circle),
-                              
-                            child: IconButton(
-                              icon: const Icon(Icons.remove, 
-                              color: Colors.white,),
-                          onPressed: decrementQuanitity,),
-                          ),
-
-                          
-
-                          //quantity 
-                          SizedBox(
-                            width: 40,
-                            child: Center(
-                              child: Text(quantityCount.toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18
-                              ),),
-                            ),
-                          ),
-
-                          // add button 
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              shape: BoxShape.circle),
-                              
-                            child: IconButton(
-                              icon: const Icon(Icons.add, 
-                              color: Colors.white,),
-                          onPressed: incrementQuantity,),
-                          )
-          
-
-
-                      ],)
-                      
-                      ],
+                        ),
+                      ),
+                      Text(
+                        widget.food.Description,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                          height: 2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            // Addons
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
+              itemCount: widget.food.availableAddons.length,
+              itemBuilder: (context,index) {
+                Addon addon = widget.food.availableAddons[index];
+                return CheckboxListTile(
+                  title: Text(addon.name),
+                  subtitle: Text(
+                    '${addon.price}₽',
+                    style: const TextStyle(
+                      color: Colors.red
                     ),
-                    const SizedBox(height: 20),
-                     
-
-                    MyButton(text: "add to cart", onTap: addToCart)
+                  ),
+                  value: widget.selectedAddon[addon], 
+                  onChanged: (bool? value){
+                    setState(() {
+                      widget.selectedAddon[addon] = value!;
+                    });
+                  },
+                );
+              }
+              ),
+            Container(
+              color: const Color.fromARGB(255, 145, 34, 26),
+              padding: const EdgeInsets.all(25),
+              child: Column(
+                children: [
+                    
+                    MyButton(
+                      text: "add to cart", 
+                      onTap: ()=>addToCart(widget.food, widget.selectedAddon)
+                    )
 
                 ],),
               )
 
+      ,
+      ]),
+      )
+    ),
+    SafeArea(
+      child:Opacity(
+        opacity: 0.6,
+        child: Container(
+          margin: const EdgeInsets.only(left: 25,top: 25),
+          decoration: const BoxDecoration(
+            color: Colors.grey,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+            onPressed: ()=> Navigator.pop(context)),
+            ),
+        ),), 
       ],
-      ),
     );
   }
 }
