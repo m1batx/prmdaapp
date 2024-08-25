@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prmda/components/my_current_location.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/restraunt.dart';
@@ -270,11 +271,13 @@ class _HomePageState extends State<HomePage> {
        //appbar above should be
       body: Column(
         children: [
+          //const MyCurrentLocation(),
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text("ОСНОВНОЕ МЕНЮ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
           ),
-          const SizedBox(height: 10),
+          
+          
           // search(),
           // categories(),
           Expanded(
