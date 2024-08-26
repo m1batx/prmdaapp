@@ -38,10 +38,10 @@ class _RegstrPageState extends State<RegstrPage> {
       }
       else{
         try{
+        // ignore: unused_local_variable
         UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-        Navigator.pop(context);
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
       }on FirebaseAuthException {
-        Navigator.pop(context);
         displayMessageToUser("Error has occured! Try again later", context);
       }
       }

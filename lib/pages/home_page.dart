@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prmda/components/my_current_location.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/restraunt.dart';

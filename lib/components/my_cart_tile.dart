@@ -51,11 +51,8 @@ class MyCartTile extends StatelessWidget{
                     children: [
                       Text(cartItem.food.name,
                       softWrap: true,),
-                      Text("${cartItem.food.price} ₽")
-                    ],
-                  ),
-                  const Spacer(),
-                  QuantitySelector(
+                      Text("${cartItem.food.price} ₽"),
+                      QuantitySelector(
                     quantity: cartItem.quantity, 
                     food: cartItem.food, 
                     onIncrement: (){
@@ -67,6 +64,9 @@ class MyCartTile extends StatelessWidget{
                     onDecrement: (){
                       restraunt.removeFromCart(cartItem);
                     })
+                    ],
+                  ),
+                  
                 ],
               ),
             ),
