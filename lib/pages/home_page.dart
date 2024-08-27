@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/models/food.dart';
-import 'package:prmda/pages/food_details_page.dart';
+ 
+ import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/pages/regstr_page.dart';
 import 'package:prmda/services/firestore.dart';
 
