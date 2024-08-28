@@ -50,9 +50,10 @@ class Food {
 enum FoodCategory{
   shawarma,
   burgers,
+  falafel,
   hotDogs,
-  drinks,
-  falafel
+  drinks
+  
 }
 enum MeatType{
   chicken,

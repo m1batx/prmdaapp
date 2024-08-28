@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
-<<<<<<< HEAD
 import 'package:prmda/restraunt.dart';
-=======
 import 'package:provider/provider.dart';
+
 import '../helper/helper_functions.dart';
-import '../restraunt.dart';
->>>>>>> 0198341029ce12e6e5be6a0ba33a7e3f50086a31
 
 
 
@@ -96,7 +93,7 @@ class _HomePageState extends State<HomePage> {
  
   Widget listFood() {
     return SizedBox(
-      height: 261, // Set the height of the slider
+      height: 280, // Set the height of the slider
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 6,
@@ -305,9 +302,8 @@ class _HomePageState extends State<HomePage> {
           
           // search(),
           // categories(),
-          Expanded(
-            child: listFood(),
-          ),
+          listFood(),
+          
           Expanded(
             child: categories())
         ],
