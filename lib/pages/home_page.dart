@@ -1,7 +1,10 @@
+import 'package:carousel_slider/carousel_slider.dart' as carousel_slider;
 import 'package:flutter/material.dart';
+
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
-
+import 'package:provider/provider.dart';
+import '../helper/helper_functions.dart';
 import '../restraunt.dart';
 
 
@@ -86,46 +89,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget categories() {
-    List list = ['Шаверма', 'Бургеры', 'Фалафель', 'Хот-доги', 'Напитки'];
+ 
+  Widget listFood() {
     return SizedBox(
-      height: 70,
-      child: ListView.builder(
-        itemCount: list.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              indexCategory = index;
-              setState(() {});
-            },
-
-            // top titled category bar 
-            child: Container(  
-              padding: EdgeInsets.fromLTRB(
-                index == 0 ? 16 : 16,
-                0,
-                index == list.length - 1 ? 16 : 16,
-                0,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                list[index],
-                style: TextStyle(
-                  fontSize: 22,
-                  color: indexCategory == index ? Colors.red : Colors.grey,
-                  fontWeight: indexCategory == index ? FontWeight.bold : null,
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-  Widget gridFood() {
-    return SizedBox(
-      height: 100, // Set the height of the slider
+      height: 261, // Set the height of the slider
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 6,
@@ -208,9 +175,15 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      const Align(
+                      Align(
                         alignment: Alignment.bottomRight,
-                        child: Material(
+                        child: GestureDetector(onTap: (){
+                                displayMessageToUser("Добавлено корзину", context);
+                                
+                                context.read<Restraunt>().addToCart(food, []);
+                                
+                              },
+                        child: const Material(
                           color: Colors.red,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(16),
@@ -219,11 +192,12 @@ class _HomePageState extends State<HomePage> {
                           child: InkWell(
                             child: Padding(
                               padding: EdgeInsets.all(8),
-                              child: Icon(Icons.add, color: Colors.white),
+                                child: Icon(Icons.add, color: Colors.white,),
                             ),
                           ),
                         ),
                       ),
+                  ),
                     ],
                   ),
                 ),
@@ -240,9 +214,40 @@ class _HomePageState extends State<HomePage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetailsPage( food: food),),);
   }
 
+  Widget bannerSlider(){
+    final List<String> bannerImages = [
+    'lib/images/angle_1/BBQ.jpg',
+    'lib/images/angle_1/Cirni lavash with mashroom .jpg',
+    'lib/images/angle_1/Cirni lavash.jpg',
+  ];
+    return Center(
+      child: carousel_slider.CarouselSlider(
+        options: carousel_slider.CarouselOptions(
+          height: 200.0,
+          autoPlay: true,
+          enlargeCenterPage: true,
+          autoPlayInterval: Duration(seconds: 3),
+          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          pauseAutoPlayOnTouch: true,
+          viewportFraction: 0.8,
+        ),
+        items: bannerImages.map((item) => Container(
+          child: Center(
+            child: Image.network(
+              item,
+              fit: BoxFit.cover,
+              width: 1000,
+            ),
+          ),
+        )).toList(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 248, 246, 244),
       resizeToAvoidBottomInset: false,
@@ -271,19 +276,20 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           //const MyCurrentLocation(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: bannerSlider()
+          ),
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("ОСНОВНОЕ МЕНЮ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
+            child: Text("ХИТ ПРОДАЖ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
           ),
           
           
           // search(),
           // categories(),
           Expanded(
-            child: gridFood(),
-          ),
-          Expanded(
-            child: gridFood(),
+            child: listFood(),
           ),
         ],
       ),

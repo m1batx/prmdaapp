@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     }
     on FirebaseAuthException {
       Navigator.pop(context);
-      displayMessageToUser("Error has occured! Try later", context);
+      displayMessageToUser("Возникла ошибка!\nПовторите позже", context);
     }
   }
 
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 25),
               const Text(
-                "LOG IN",
+                "Войти",
                 style: TextStyle(fontSize: 20),
               ),
 
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
               //password textfield
               const SizedBox(height: 10),
               MyTextfield(
-                hintText: "Password",
+                hintText: "Пароль",
                 obscureText: true,
                 controller: passwordController,
               ),
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "Forgot Password?",
+                    "Забыли пароль?",
                   ),
                 ],
               ),
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 25),
               //sign in button
               MyButton(
-                text: "Login", 
+                text: "Войти", 
                 onTap: login
               ),
               
@@ -100,12 +100,12 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Don't have an account?"
+                    "Нет аккаунта?"
                   ),
                   GestureDetector(
                     onTap: () {Navigator.pushNamed(context,'/regstrationpage');},
                     child: const Text(
-                      "Register Here",
+                      "Зарегистрироваться",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),

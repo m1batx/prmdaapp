@@ -154,7 +154,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                 children: [
                     
                     MyButton(
-                      text: "add to cart", 
+                      text: "В корзину", 
                       onTap: ()=>addToCart(widget.food, widget.selectedAddon)
                     )
 

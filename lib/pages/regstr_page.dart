@@ -34,15 +34,16 @@ class _RegstrPageState extends State<RegstrPage> {
       if (passwordController.text!=confirmpasswordController.text){
         Navigator.pop(context);
 
-        displayMessageToUser("Passwords don't match", context);
+        displayMessageToUser("Пароли не совпадают", context);
       }
       else{
         try{
         // ignore: unused_local_variable
         UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-        await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+        FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+        Navigator.pop(context);
       }on FirebaseAuthException {
-        displayMessageToUser("Error has occured! Try again later", context);
+        displayMessageToUser("Возникла ошибка! Попробуйте позже", context);
       }
       }
   }
@@ -68,14 +69,14 @@ class _RegstrPageState extends State<RegstrPage> {
 
               const SizedBox(height: 25),
               const Text(
-                "REGISTER",
+                "РЕГИСТРАЦИЯ",
                 style: TextStyle(fontSize: 20),
               ),
 
               //username textfield
               const SizedBox(height: 50),
               MyTextfield(
-                hintText: "Username",
+                hintText: "Имя пользователя",
                 obscureText: false,
                 controller: usernameController,
               ),
@@ -83,7 +84,7 @@ class _RegstrPageState extends State<RegstrPage> {
               //email textfield
               const SizedBox(height: 10),
               MyTextfield(
-                hintText: "Email",
+                hintText: " Email",
                 obscureText: false,
                 controller: emailController,
               ),
@@ -91,7 +92,7 @@ class _RegstrPageState extends State<RegstrPage> {
               //password textfield
               const SizedBox(height: 10),
               MyTextfield(
-                hintText: "Password",
+                hintText: "Пароль",
                 obscureText: true,
                 controller: passwordController,
               ),
@@ -100,7 +101,7 @@ class _RegstrPageState extends State<RegstrPage> {
               //confirm password textfield
               const SizedBox(height: 10),
               MyTextfield(
-                hintText: "Confirm password",
+                hintText: "Подтвердите пароль",
                 obscureText: true,
                 controller: confirmpasswordController,
               ),
@@ -108,7 +109,7 @@ class _RegstrPageState extends State<RegstrPage> {
               const SizedBox(height: 25),
               //sign in button
               MyButton(
-                text: "Register", 
+                text: "Регистрация", 
                 onTap: register
               ),
               
@@ -120,12 +121,12 @@ class _RegstrPageState extends State<RegstrPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Already have an account?"
+                    "Уже есть аккаунт?"
                   ),
                   GestureDetector(
                     onTap: () {Navigator.pushNamed(context,'/login');},
                     child: const Text(
-                      "Log in",
+                      "Войти",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
