@@ -4,6 +4,7 @@ import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/o_nas.dart';
+import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 import 'pages/regstr_page.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) =>  const LoginPage(),
         '/Cart': (context) =>  const CartPage(),
         
-        
+        '/userPage': (context) =>  UserPage(),
         '/ONas': (context) => const ONas(),
 
 

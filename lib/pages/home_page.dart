@@ -122,7 +122,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
   Widget gridFood() {
     return SizedBox(
       height: 100, // Set the height of the slider
