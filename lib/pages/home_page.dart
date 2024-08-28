@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:prmda/models/food.dart';
+<<<<<<< HEAD
+ 
+ import 'package:prmda/pages/food_details_page.dart';
+import 'package:prmda/pages/regstr_page.dart';
+import 'package:prmda/services/firestore.dart';
+=======
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/restraunt.dart';
+>>>>>>> a457f900ce81a3ba5fcb936277aa5b2c494d0150
 
 
 

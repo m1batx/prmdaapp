@@ -148,7 +148,7 @@ class Restraunt extends ChangeNotifier{
     CartItem? cartItem = _cart.firstWhereOrNull((item){
       bool isSameFood = item.food == food;
       bool isSameAddons = 
-        ListEquality().equals(item.selectedAddons, selectedAddons);
+        const ListEquality().equals(item.selectedAddons, selectedAddons);
       return isSameFood && isSameAddons;
     });
     if (cartItem != null){
