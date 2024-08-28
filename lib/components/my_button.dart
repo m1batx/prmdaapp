@@ -15,7 +15,7 @@ class MyButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
           decoration: BoxDecoration(
-            color: Colors.yellow,
+            color: Colors.red,
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.all(25),
@@ -25,6 +25,7 @@ class MyButton extends StatelessWidget {
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
+                color: Colors.white
               ),
               ),
             ),

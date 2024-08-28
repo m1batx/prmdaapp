@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'home_page.dart';
 
 class EntryAnimationPage extends StatefulWidget {
+  const EntryAnimationPage({super.key});
+
   @override
   _EntryAnimationPageState createState() => _EntryAnimationPageState();
 }
@@ -17,7 +19,7 @@ class _EntryAnimationPageState extends State<EntryAnimationPage>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
 
@@ -27,7 +29,7 @@ class _EntryAnimationPageState extends State<EntryAnimationPage>
       double start = index / _text.length;
       double end = (index + 1) / _text.length;
       return Tween<Offset>(
-        begin: Offset(0, 2),
+        begin: const Offset(0, 2),
         end: Offset.zero,
       ).animate(CurvedAnimation(
         parent: _animationController,
@@ -37,10 +39,10 @@ class _EntryAnimationPageState extends State<EntryAnimationPage>
 
     _animationController.forward();
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     });
   }
@@ -68,7 +70,7 @@ class _EntryAnimationPageState extends State<EntryAnimationPage>
                     position: _letterAnimations[index],
                     child: Text(
                       char,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,

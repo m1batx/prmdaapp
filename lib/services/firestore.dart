@@ -1,24 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:prmda/models/food.dart';
 
 class FirestoreService{
 
-  final CollectionReference food = 
-  FirebaseFirestore.instance.collection("food");
+  final CollectionReference orders = 
+  FirebaseFirestore.instance.collection("orders");
 
   //get food
-
-  Stream<QuerySnapshot> getFoodStream(){
-    final foodStream = food.orderBy("id", descending: true).snapshots();
-
-    return foodStream;
+  Future<void> saveOrderToDatabase(String receipt) async{
+    await orders.add({
+      "date": DateTime.now(),
+      "order": receipt,
+    }
+    );
   }
-  
-  Stream<List<Food>> getFoods() {
-  return getFoodStream().map((querySnapshot) {
-    return querySnapshot.docs.map((docSnapshot) {
-      return Food.fromMap(docSnapshot.data() as Map<String, dynamic>);
-    }).toList();
-  });
-}
 }
