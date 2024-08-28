@@ -6,13 +6,6 @@ import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 
 import '../components/my_button.dart';
-import 'package:prmda/components/my_cart_tile.dart';
-import 'package:prmda/components/my_current_location.dart';
-import 'package:prmda/pages/order_page.dart';
-import 'package:prmda/restraunt.dart';
-import 'package:provider/provider.dart';
-
-import '../components/my_button.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

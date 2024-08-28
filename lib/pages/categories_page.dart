@@ -9,7 +9,7 @@ import 'food_details_page.dart';
 
 class CategoriesPage extends StatefulWidget{
   const CategoriesPage({super.key});
-
+  
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
 }

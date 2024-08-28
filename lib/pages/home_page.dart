@@ -207,6 +207,19 @@ class _HomePageState extends State<HomePage> {
         );
       }
     
+    Widget categories(){
+      return SizedBox(
+        child: Row(
+          children: [
+            // Container(
+            //   IconButton(
+            //     icon: Icon(Icons.home), 
+            //     onPressed: () {  },)
+            // )
+          ],
+        ),
+      );
+    }
 
 
   // navigator to the item pages 
@@ -291,6 +304,8 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: listFood(),
           ),
+          Expanded(
+            child: categories())
         ],
       ),
     );
