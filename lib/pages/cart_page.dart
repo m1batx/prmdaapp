@@ -138,7 +138,7 @@ class _CartPageState extends State<CartPage> {
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const OrderPage()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(adress: selectedAddress,)));
                                   },
                                   child: const Text("Ок"),
                                 ),

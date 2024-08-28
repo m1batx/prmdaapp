@@ -3,7 +3,8 @@ import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 
 class MyReceipt extends StatelessWidget{
-  const MyReceipt({super.key});
+  final String adress;
+  const MyReceipt({super.key, required this.adress});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class MyReceipt extends StatelessWidget{
               padding: const EdgeInsets.all(25),
               child: Consumer<Restraunt>(
                 builder: (context, restraunt, child)=> 
-                Text(restraunt.displayCartReceipt())
+                Text("${restraunt.displayCartReceipt()}\nАдрес самовывоза: $adress")
                 ),
             )
           ],
