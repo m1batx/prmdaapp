@@ -48,8 +48,8 @@ class Food {
 
 }
 enum FoodCategory{
-  burgers,
   shawarma,
+  burgers,
   hotDogs,
   drinks,
   falafel

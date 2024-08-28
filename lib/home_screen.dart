@@ -1,8 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/pages/cart_page.dart';
+import 'package:prmda/pages/categories_page.dart';
 import 'package:prmda/pages/home_page.dart';
-import 'package:prmda/pages/regstr_page.dart';
 import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/services/notification_services.dart';
 
@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = [
     const HomePage(),
+    const CategoriesPage(),
     const CartPage(),
-    const RegstrPage(),
     UserPage(),
   ];
 
@@ -46,11 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.white,
           ),
           Icon(
-            Icons.shopping_cart,
+            Icons.store,
             color: Colors.white,
           ),
           Icon(
-            Icons.favorite,
+            Icons.shopping_cart,
             color: Colors.white,
           ),
           Icon(
