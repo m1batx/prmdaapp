@@ -465,9 +465,20 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Spacer(),
-            ClipRRect()
+            
+            
+            ClipRRect(),
+            
           ],
         ),
+        actions: [
+            IconButton(
+              icon: const Icon(Icons.notifications_outlined), // Right side icon
+              onPressed: () {
+                // Handle the press event
+              },
+            ),
+          ],
       ),
        //appbar above should be
       body: Column(
@@ -481,10 +492,6 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(8.0),
             child: Text("ХИТ ПРОДАЖ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize: 25),),
           ),
-          
-          
-          // search(),
-          // categories(),
           listFood(),
           
           Expanded(
