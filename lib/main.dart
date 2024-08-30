@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
+import 'package:prmda/pages/meatCategories_page.dart';
 import 'package:prmda/pages/o_nas.dart';
 import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/restraunt.dart';
@@ -41,7 +42,6 @@ class MyApp extends StatelessWidget {
         '/regstrationpage': (context) => const RegstrPage(),
         '/login': (context) =>  const LoginPage(),
         '/Cart': (context) =>  const CartPage(),
-        
         '/userPage': (context) =>  UserPage(),
         '/ONas': (context) => const ONas(),
 

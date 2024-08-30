@@ -44,6 +44,7 @@ dependencies:
   provider: ^6.1.2
   intl: ^0.19.0
   carousel_slider: ^5.0.0
+  flutter_svg: ^1.0.3
 
   collection: any
 dev_dependencies:
@@ -74,6 +75,7 @@ flutter:
       - lib/images/angle_2/
       - lib/images/YANDEX/
       - lib/images/logo.png
+      - lib/images/icons/
 
   
   #   - images/a_dot_ham.jpeg
