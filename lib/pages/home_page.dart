@@ -8,7 +8,6 @@ import 'package:prmda/restraunt.dart';
 =======
 import 'package:provider/provider.dart';
 import '../helper/helper_functions.dart';
-import '../restraunt.dart';
 >>>>>>> 0198341029ce12e6e5be6a0ba33a7e3f50086a31
 
 
@@ -230,8 +229,8 @@ class _HomePageState extends State<HomePage> {
           height: 200.0,
           autoPlay: true,
           enlargeCenterPage: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          autoPlayInterval: const Duration(seconds: 3),
+          autoPlayAnimationDuration: const Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
           pauseAutoPlayOnTouch: true,
           viewportFraction: 0.8,
