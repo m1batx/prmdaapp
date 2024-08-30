@@ -197,6 +197,10 @@ class _MeatCategoriesPageState extends State<MeatCategoriesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Категории"),
+        elevation: 0,
+      ),
       body: Column(
           children: [
             categories(),

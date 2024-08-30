@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
-import 'package:prmda/pages/meatCategories_page.dart';
 import 'package:prmda/pages/o_nas.dart';
 import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/restraunt.dart';
