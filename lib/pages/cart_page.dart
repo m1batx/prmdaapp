@@ -6,7 +6,10 @@ import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 
 import '../components/my_button.dart';
+<<<<<<< HEAD
 
+=======
+>>>>>>> a625009c99476cdccf4f0b1f186db356c56cc6d2
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
