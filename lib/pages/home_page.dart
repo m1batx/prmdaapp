@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart' as carousel_slider;
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
+import 'package:prmda/pages/meatCategories_page.dart';
 import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 
@@ -210,15 +212,195 @@ class _HomePageState extends State<HomePage> {
     
     Widget categories(){
       return SizedBox(
-        child: Row(
-          children: [
-            // Container(
-            //   IconButton(
-            //     icon: Icon(Icons.home), 
-            //     onPressed: () {  },)
-            // )
-          ],
-        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    //Navigator.pushNamed(context, '/MeatCategoryPage');
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const MeatCategoriesPage(index: 0)));
+                  },
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            'lib/images/icons/chicken.svg',
+                            width: 50,
+                            height: 50,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        "Курица", 
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                        ),
+                        )
+                      ],
+                    )
+                  ),
+                ),
+                const SizedBox(width: 15,),
+                GestureDetector(
+                onTap: (){
+                  //Navigator.pushNamed(context, '/MeatCategoryPage');
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MeatCategoriesPage(index: 1)));
+                },
+                child:Center(
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SvgPicture.asset(
+                          'lib/images/icons/falafel.svg',
+                          width: 50,
+                          height: 50,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      "Фалафель", 
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),
+                      )
+                    ],
+                  )
+                )
+              ),
+              const SizedBox(width: 15,),
+                GestureDetector(
+                onTap: (){
+                  //Navigator.pushNamed(context, '/MeatCategoryPage');
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MeatCategoriesPage(index: 2)));
+                },
+                child:Center(
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SvgPicture.asset(
+                          'lib/images/icons/meat.svg',
+                          width: 50,
+                          height: 50,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      "Говядина", 
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),
+                      )
+                    ],
+                  )
+                )
+              ),
+              const SizedBox(width: 15,),
+                GestureDetector(
+                onTap: (){
+                  //Navigator.pushNamed(context, '/MeatCategoryPage');
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MeatCategoriesPage(index: 3)));
+                },
+                child:Center(
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SvgPicture.asset(
+                          'lib/images/icons/fish.svg',
+                          width: 50,
+                          height: 50,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      "Креветки", 
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),
+                      )
+                    ],
+                  )
+                )
+              ),
+              const SizedBox(width: 15,),
+                GestureDetector(
+                onTap: (){
+                  //Navigator.pushNamed(context, '/MeatCategoryPage');
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MeatCategoriesPage(index: 4)));
+                },
+                child:Center(
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SvgPicture.asset(
+                          'lib/images/icons/drink.svg',
+                          width: 50,
+                          height: 50,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      "Напитки", 
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),
+                      )
+                    ],
+                  )
+                )
+              ),
+              ],
+            ),
+          ),
+        )
       );
     }
 
@@ -240,12 +422,13 @@ class _HomePageState extends State<HomePage> {
           height: 200.0,
           autoPlay: true,
           enlargeCenterPage: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          autoPlayInterval: const Duration(seconds: 3),
+          autoPlayAnimationDuration: const Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
           pauseAutoPlayOnTouch: true,
           viewportFraction: 0.8,
         ),
+        // ignore: avoid_unnecessary_containers
         items: bannerImages.map((item) => Container(
           child: Center(
             child: Image.network(
