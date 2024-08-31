@@ -9,11 +9,6 @@ import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 
 import '../helper/helper_functions.dart';
-<<<<<<< HEAD
->>>>>>> 0198341029ce12e6e5be6a0ba33a7e3f50086a31
-=======
->>>>>>> a625009c99476cdccf4f0b1f186db356c56cc6d2
-
 
 
 class HomePage extends StatefulWidget {

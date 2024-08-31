@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
-import 'package:prmda/pages/meatCategories_page.dart';
 import 'package:prmda/pages/o_nas.dart';
 import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/restraunt.dart';
@@ -14,7 +13,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+  /*await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);*/
 
   runApp(
     MultiProvider(
