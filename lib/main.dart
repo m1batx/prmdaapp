@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/api/FirebaseApi.dart';
 import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
@@ -13,7 +14,12 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+<<<<<<< HEAD
   /*await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);*/
+=======
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+  //await FirebaseApi().initNotifications();
+>>>>>>> 4d076bac93a79937fdf2a3c639459c27e14a22dd
 
   runApp(
     MultiProvider(

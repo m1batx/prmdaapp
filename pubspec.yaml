@@ -47,6 +47,7 @@ dependencies:
   flutter_svg: ^1.0.3
 
   collection: any
+  firebase_messaging: ^15.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
