@@ -4,6 +4,7 @@ import 'package:prmda/api/FirebaseApi.dart';
 import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
+import 'package:prmda/pages/notification_page.dart';
 import 'package:prmda/pages/o_nas.dart';
 import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/restraunt.dart';
@@ -12,27 +13,27 @@ import 'pages/regstr_page.dart';
 import 'pages/home_page.dart';
 import 'firebase_options.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-<<<<<<< HEAD
   /*await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);*/
-=======
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-  //await FirebaseApi().initNotifications();
->>>>>>> 4d076bac93a79937fdf2a3c639459c27e14a22dd
-
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context)=> Restraunt()),
-      ],
-      child: const MyApp(),
-    )
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseApi().initNotifications();
+ 
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => Restraunt()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 // Your current platform's firebase options
-final FirebaseOptions currentPlatformOptions = DefaultFirebaseOptions.currentPlatform;
+final FirebaseOptions currentPlatformOptions =
+    DefaultFirebaseOptions.currentPlatform;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -42,19 +43,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(), // Start with the entry animation page
+      navigatorKey: navigatorKey,
       routes: {
         '/homepage': (context) => const HomePage(),
         '/regstrationpage': (context) => const RegstrPage(),
-        '/login': (context) =>  const LoginPage(),
-        '/Cart': (context) =>  const CartPage(),
-        '/userPage': (context) =>  UserPage(),
+        '/login': (context) => const LoginPage(),
+        '/Cart': (context) => const CartPage(),
+        '/userPage': (context) => UserPage(),
         '/ONas': (context) => const ONas(),
-
-
-
-
+        '/notification_screen': (context) => const NotificationPage(),
       },
     );
   }
-  
 }
