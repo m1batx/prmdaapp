@@ -23,7 +23,22 @@ class MyReceipt extends StatelessWidget{
               padding: const EdgeInsets.all(25),
               child: Consumer<Restraunt>(
                 builder: (context, restraunt, child)=> 
-                Text("${restraunt.displayCartReceipt()}\nАдрес самовывоза: $adress")
+                FutureBuilder<String>(
+                  future: restraunt.displayCartReceipt(),
+                  builder: (context, snapshot){
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator(); 
+                    }
+                    else if (snapshot.hasError) {
+                      return Text('Ошибка: ${snapshot.error}'); // Display an error message if an error occurs
+                    } else if (!snapshot.hasData || snapshot.data == null) {
+                      return const Text('Данные не были загружены'); // Display a message if no data is found
+                    } else {
+                      return Text("${snapshot.data}\nАдрес самовывоза: $adress"); // Display the fetched data
+                    }
+                  },
+                )
+                
                 ),
             )
           ],

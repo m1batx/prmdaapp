@@ -21,5 +21,4 @@ class CartItem{
     return (food.price + addonsPrice) *quantity;
   }
 
-
 }

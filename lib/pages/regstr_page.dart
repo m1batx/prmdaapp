@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
 import 'package:prmda/components/my_textfield.dart';
 import 'package:prmda/helper/helper_functions.dart';
+import 'package:prmda/pages/user_page.dart';
 class RegstrPage extends StatefulWidget{
 
 
@@ -40,6 +41,7 @@ class _RegstrPageState extends State<RegstrPage> {
         try{
         // ignore: unused_local_variable
         UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+        Navigator.pop(context);
         FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
         Navigator.pop(context);
       }on FirebaseAuthException {

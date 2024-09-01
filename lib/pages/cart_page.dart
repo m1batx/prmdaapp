@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/components/my_cart_tile.dart';
 import 'package:prmda/components/my_current_location.dart';
 import 'package:prmda/pages/order_page.dart';
 import 'package:prmda/restraunt.dart';
+import 'package:prmda/services/firestore.dart';
 import 'package:provider/provider.dart';
 
 import '../components/my_button.dart';
@@ -17,9 +19,9 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   String selectedAddress = "Адрес не выбран";
 
-  void onAddressSelected(String address) {
+  void onAddressSelected(String adress) {
     setState(() {
-      selectedAddress = address;
+      selectedAddress = adress;
     });
   }
 
@@ -111,6 +113,24 @@ class _CartPageState extends State<CartPage> {
                         context: context,
                         builder: (context) => AlertDialog(
                           title: const Text("Адрес не выбран"),
+                          content: SizedBox(
+                            height: 30,
+                            child: Center(
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Ок"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }else if (FirebaseAuth.instance.currentUser==null){
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text("Вы не вошли"),
                           content: SizedBox(
                             height: 30,
                             child: Center(

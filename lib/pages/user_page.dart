@@ -110,6 +110,7 @@ class UserPage extends StatelessWidget{
               title: const Text('Выйти'),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
+                FirebaseAuth.instance.signOut();
                 // Handle Log out tap
               },
             ),

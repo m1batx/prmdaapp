@@ -1,10 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/auth/auth.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/categories_page.dart';
 import 'package:prmda/pages/home_page.dart';
-import 'package:prmda/pages/user_page.dart';
-import 'package:prmda/services/notification_services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,14 +19,15 @@ class _HomeScreenState extends State<HomeScreen> {
     const HomePage(),
     const CategoriesPage(),
     const CartPage(),
-    UserPage(),
+    const AuthPage(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      //NotificationServices().showNotification();
     });
-    NotificationServices().showNotification();
+    
   }
 
   @override

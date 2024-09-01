@@ -1,10 +1,12 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/services/cart_item.dart';
 import 'package:collection/collection.dart';
+import 'package:prmda/services/firestore.dart';
 
 class Restraunt extends ChangeNotifier{
   final List<Food> _menu = [
@@ -583,8 +585,13 @@ class Restraunt extends ChangeNotifier{
   //GETTER
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
+  String get address => _address;
+  String _address = "Не выбрано";
 
-
+  String changeAddress(String addr){
+    _address=addr;
+    return _address;
+  }
   
   final List<CartItem> _cart = [];
   //add to Cart
@@ -641,7 +648,8 @@ class Restraunt extends ChangeNotifier{
     return total;
   }
 
-
+  
+  
   //get total number of items in cart
 
   int getTotalItemCount(){
@@ -653,6 +661,7 @@ class Restraunt extends ChangeNotifier{
 
     return totalItemCount;
   }
+  
 
   //clear cart
 
@@ -660,8 +669,24 @@ class Restraunt extends ChangeNotifier{
     _cart.clear();
     notifyListeners();
   }
-
-  String displayCartReceipt(){
+  
+  // ignore: non_constant_identifier_names
+  Future<Map<String, Object>> generate_order(var it) async {
+    int orderID = await FirestoreService().getLastOrderId();
+    print("|||||$orderID");
+    return {
+      //"order_id": "1",
+      "order_id": orderID,
+      "order_status": OrderStatus.processing.toString(),
+      "user_id": FirebaseAuth.instance.currentUser!.uid,
+      "location": _address,  //need to add address here
+      "date": DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.now()),
+      "total_count": getTotalItemCount(),
+      "total_amount": getTotalPrice(),
+      "items": it,
+    };
+  }
+  Future<String> displayCartReceipt() async {
     final receipt = StringBuffer();
     receipt.writeln("Чек по вашему заказу");
     receipt.writeln();
@@ -671,18 +696,25 @@ class Restraunt extends ChangeNotifier{
     receipt.writeln(formattedDate);
     receipt.writeln();
     receipt.writeln("----------");
-
+    var it = [];
     for (final cartItem in _cart){
       receipt.writeln("${cartItem.quantity} x ${cartItem.food.name} - ${_formatPrice(cartItem.food.price)}");
+      
       if (cartItem.selectedAddons.isNotEmpty){
         receipt.writeln("     Добавки: ${_formatAddons(cartItem.selectedAddons)}");
       }
+      Map<String, Object> foodItem = {
+        "food_name": cartItem.food.name,
+        'selceted_addons': cartItem.selectedAddons
+      };
+      it.add(foodItem);
       receipt.writeln();
     }
     receipt.writeln("----------");
     receipt.writeln();
     receipt.writeln("Общее колличество: ${getTotalItemCount()}");
     receipt.writeln("Сумма: ${_formatPrice(getTotalPrice())}");
+    FirestoreService().saveOrderToDatabase(await generate_order(it));
     return receipt.toString();
   }
 
@@ -695,3 +727,9 @@ class Restraunt extends ChangeNotifier{
       .join(", ");
   }
 }
+enum OrderStatus{
+    done,
+    cooking,
+    processing,
+    declined,
+  }

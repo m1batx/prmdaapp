@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prmda/restraunt.dart';
+import 'package:provider/provider.dart';
 
 class MyCurrentLocation extends StatefulWidget {
   final Function(String) onAddressSelected;
@@ -36,7 +38,7 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
                 title: Text(addresses[index]),
                 onTap: () {
                   setState(() {
-                    selectedAddress = addresses[index];
+                    selectedAddress = context.read<Restraunt>().changeAddress(addresses[index]);
                   });
                   // Close the dialog
                   Navigator.pop(context);
