@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
 import 'package:prmda/components/my_textfield.dart';
 import 'package:prmda/helper/helper_functions.dart';
-import 'package:prmda/pages/user_page.dart';
 class RegstrPage extends StatefulWidget{
 
 

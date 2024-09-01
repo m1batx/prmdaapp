@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prmda/components/my_receipt.dart';
-import 'package:prmda/restraunt.dart';
-import 'package:prmda/services/firestore.dart';
-import 'package:provider/provider.dart';
 
 class OrderPage extends StatefulWidget{
   final String adress;

@@ -4,7 +4,6 @@ import 'package:prmda/components/my_cart_tile.dart';
 import 'package:prmda/components/my_current_location.dart';
 import 'package:prmda/pages/order_page.dart';
 import 'package:prmda/restraunt.dart';
-import 'package:prmda/services/firestore.dart';
 import 'package:provider/provider.dart';
 
 import '../components/my_button.dart';
