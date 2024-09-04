@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart' as carousel_slider;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prmda/components/my_drawer.dart';
 
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
@@ -447,10 +448,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 248, 246, 244),
       resizeToAvoidBottomInset: false,
+      drawer: const MyDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: const Icon(Icons.menu),// HAVE TO UPDATE
+        elevation: 0,// HAVE TO UPDATE
         title: const Stack(
           children: [
             Center(
