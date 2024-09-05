@@ -6,6 +6,7 @@ import 'package:prmda/components/my_drawer.dart';
 import 'package:prmda/models/food.dart';
 import 'package:prmda/pages/food_details_page.dart';
 import 'package:prmda/pages/meatCategories_page.dart';
+import 'package:prmda/pages/notification_page.dart';
 import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 
@@ -475,7 +476,7 @@ class _HomePageState extends State<HomePage> {
             IconButton(
               icon: const Icon(Icons.notifications_outlined), // Right side icon
               onPressed: () {
-                // Handle the press event
+               Navigator.push(context, MaterialPageRoute(builder: (context)=> const NotificationPage()));
               },
             ),
           ],

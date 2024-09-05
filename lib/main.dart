@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/api/FirebaseApi.dart';
 import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
@@ -19,7 +20,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  //await FirebaseApi().initNotifications();
+  await FirebaseApi().initNotifications();
  
 
   runApp(MultiProvider(

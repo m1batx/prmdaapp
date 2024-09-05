@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
@@ -38,8 +39,14 @@ class _RegstrPageState extends State<RegstrPage> {
       }
       else{
         try{
-        // ignore: unused_local_variable
         UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+        User? user = userCredential.user;
+        if (user != null) {
+          await FirebaseFirestore.instance.collection('Users').doc(user.email).set({
+            'username': usernameController.text,
+            'email': emailController.text,
+          });
+        }
         Navigator.pop(context);
         FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
         Navigator.pop(context);
