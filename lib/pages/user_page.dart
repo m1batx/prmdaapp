@@ -25,9 +25,8 @@ class UserPage extends StatelessWidget{
       appBar: AppBar(
         title:const Text("Профиль",
           style: TextStyle(
-            color: Colors.white
+            color: Colors.red
             ),),
-        backgroundColor: Colors.red,
       ),
       body: FutureBuilder(
         future: getUserDetails(), 
