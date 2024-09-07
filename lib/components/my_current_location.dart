@@ -3,9 +3,9 @@ import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
 
 class MyCurrentLocation extends StatefulWidget {
-  final Function(String) onAddressSelected;
+  final String selectedAddress;
 
-  const MyCurrentLocation({super.key, required this.onAddressSelected});
+  const MyCurrentLocation({super.key, required this.selectedAddress});
 
   @override
   State<MyCurrentLocation> createState() => _MyCurrentLocationState();
@@ -21,9 +21,10 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
   ];
 
   // Variable to hold the selected address
-  String selectedAddress = "Адрес не выбран";
+  String selectedAddress = "Не выбрано";
 
   void openLocationSearchBox(BuildContext context) {
+    //selectedAddress =context.read<Restraunt>().address;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -34,6 +35,7 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
             shrinkWrap: true,
             itemCount: addresses.length,
             itemBuilder: (context, index) {
+              
               return ListTile(
                 title: Text(addresses[index]),
                 onTap: () {
@@ -42,11 +44,9 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
                   });
                   // Close the dialog
                   Navigator.pop(context);
-                  // Pass the selected address back to the CartPage
-                  widget.onAddressSelected(selectedAddress);
                 },
                 selected: selectedAddress == addresses[index],
-                selectedTileColor: Colors.blue.withOpacity(0.1),
+                selectedTileColor: Colors.red.withOpacity(0.1),
               );
             },
           ),
@@ -57,6 +57,7 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
 
   @override
   Widget build(BuildContext context) {
+    selectedAddress =context.read<Restraunt>().address;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(

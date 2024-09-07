@@ -590,7 +590,7 @@ class Restraunt extends ChangeNotifier{
 
   String changeAddress(String addr){
     _address=addr;
-    return _address;
+    return addr;
   }
   
   final List<CartItem> _cart = [];
@@ -733,3 +733,17 @@ enum OrderStatus{
     processing,
     declined,
   }
+String OrderStatusToString(OrderStatus status){
+  switch (status){
+    case OrderStatus.done:
+      return ("Готово");
+    case OrderStatus.cooking:
+      return ("Готовится");
+    case OrderStatus.processing:
+     return "Обрабатывается";
+    case OrderStatus.declined:
+     return "Отменен";
+    default:
+      return "Неизвестно";
+  }
+}

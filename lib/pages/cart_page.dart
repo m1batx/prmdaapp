@@ -16,14 +16,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  String selectedAddress = "Адрес не выбран";
-
-  void onAddressSelected(String adress) {
-    setState(() {
-      selectedAddress = adress;
-    });
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<Restraunt>(
@@ -65,7 +58,7 @@ class _CartPageState extends State<CartPage> {
               Expanded(
                 child: Column(
                   children: [
-                    MyCurrentLocation(onAddressSelected: onAddressSelected),
+                    MyCurrentLocation(selectedAddress: restraunt.address,),
                     userCart.isEmpty
                         ? const Expanded(
                             child: Center(
@@ -107,7 +100,7 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ),
                       );
-                    } else if (selectedAddress.contains("Адрес не выбран")){
+                    } else if (restraunt.address.contains("Адрес не выбран")){
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -153,11 +146,11 @@ class _CartPageState extends State<CartPage> {
                             height: 100,
                             child: Column(
                               children: [
-                                Text("Адрес самовывоза: $selectedAddress"),
+                                Text("Адрес самовывоза: ${restraunt.address}"),
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(adress: selectedAddress,)));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(adress: restraunt.address,)));
                                   },
                                   child: const Text("Ок"),
                                 ),

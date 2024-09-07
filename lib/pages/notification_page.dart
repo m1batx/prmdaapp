@@ -23,7 +23,8 @@ class NotificationPage extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
+                  print('Error: ${snapshot.error}');
+                  return const Center(child: Text('Нет уведомлений'));
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Center(child: Text('Нет уведомлений'));
