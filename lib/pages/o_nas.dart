@@ -60,7 +60,7 @@ Widget build(BuildContext context) {
                   ),
                 ),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 250,
                     width: 175,
                     child: Center(

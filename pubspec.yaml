@@ -48,6 +48,7 @@ dependencies:
 
   collection: any
   firebase_messaging: ^15.1.0
+  firebase_analytics: ^11.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
