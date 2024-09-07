@@ -69,19 +69,22 @@ class _SettingsPageState extends State<SettingsPage> {
             }
             else if (snapshot.hasData){
               var userData = snapshot.data!.data()!;
+              _nameController.text= userData['name'];
+              _emailController.text= userData['email'];
+              _phoneController.text= userData['phone'];
               return Column(
                 children: [
                   TextField(
                     controller: _nameController,
-                    decoration: InputDecoration(labelText: 'Name', helperText: userData['name'],),
+                    decoration: const InputDecoration(labelText: 'Name'),
                   ),
                   TextField(
                     controller: _emailController,
-                    decoration: InputDecoration(labelText: 'Email', helperText: userData['email']),
+                    decoration: const InputDecoration(labelText: 'Email'),
                   ),
                   TextField(
                     controller: _phoneController,
-                    decoration: InputDecoration(labelText: 'Phone', helperText: userData['phone']),
+                    decoration: const InputDecoration(labelText: 'Phone'),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
