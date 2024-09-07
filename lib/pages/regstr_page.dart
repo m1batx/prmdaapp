@@ -60,12 +60,14 @@ class _RegstrPageState extends State<RegstrPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: Colors.grey,
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        child: Center(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
           child: Column(
@@ -148,6 +150,7 @@ class _RegstrPageState extends State<RegstrPage> {
           ),
         ),
       ),
+      )
     );
   }
 }
