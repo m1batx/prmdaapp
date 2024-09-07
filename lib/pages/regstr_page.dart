@@ -43,8 +43,9 @@ class _RegstrPageState extends State<RegstrPage> {
         User? user = userCredential.user;
         if (user != null) {
           await FirebaseFirestore.instance.collection('Users').doc(user.email).set({
-            'username': usernameController.text,
+            'name': usernameController.text,
             'email': emailController.text,
+            'phone': '',
           });
         }
         Navigator.pop(context);

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:prmda/home_screen.dart';
 
 class SettingsPage extends StatefulWidget{
@@ -20,12 +21,28 @@ class _SettingsPageState extends State<SettingsPage> {
     return await FirebaseFirestore.instance
     .collection("Users").doc(_auth.currentUser!.email).get();
   }
+  final MaskTextInputFormatter _phoneMask = MaskTextInputFormatter(
+    mask: '+7 (###) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
+   bool _validateEmail(String email) {
+    final emailRegExp = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+    return emailRegExp.hasMatch(email);
+  }
 
   void _saveUserData() async {
     String name = _nameController.text;
     String email = _emailController.text;
     String phone = _phoneController.text;
+
+    if (!_validateEmail(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Неправильный email!')),
+      );
+      return;
+    }
 
     User? user = _auth.currentUser;
     if (user != null) {
@@ -35,11 +52,11 @@ class _SettingsPageState extends State<SettingsPage> {
         'phone': phone,
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('User data saved successfully!')),
+        const SnackBar(content: Text('Данные сохранены!')),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('User not authenticated!')),
+        const SnackBar(content: Text('Вы не авторизованы!')),
       );
     }
   }
@@ -76,15 +93,18 @@ class _SettingsPageState extends State<SettingsPage> {
                 children: [
                   TextField(
                     controller: _nameController,
-                    decoration: const InputDecoration(labelText: 'Name'),
+                    decoration: const InputDecoration(labelText: 'ФИО'),
                   ),
                   TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(labelText: 'Email'),
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   TextField(
                     controller: _phoneController,
-                    decoration: const InputDecoration(labelText: 'Phone'),
+                    decoration: const InputDecoration(labelText: 'Телефон'),
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [_phoneMask],
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
