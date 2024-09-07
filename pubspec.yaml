@@ -79,6 +79,9 @@ flutter:
       - lib/images/YANDEX/
       - lib/images/logo.png
       - lib/images/icons/
+      - lib/images/sources/i.webp
+      - lib/images/sources/i-2.webp
+      - lib/images/sources/i-3.webp
 
   
   #   - images/a_dot_ham.jpeg

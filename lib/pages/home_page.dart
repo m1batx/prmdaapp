@@ -433,7 +433,7 @@ class _HomePageState extends State<HomePage> {
         // ignore: avoid_unnecessary_containers
         items: bannerImages.map((item) => Container(
           child: Center(
-            child: Image.network(
+            child: Image.asset(
               item,
               fit: BoxFit.cover,
               width: 1000,
