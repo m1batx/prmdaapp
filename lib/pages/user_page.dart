@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/my_orders_page.dart';
+import 'package:prmda/pages/settings_page.dart';
 
 class UserPage extends StatelessWidget{
 
@@ -96,6 +97,7 @@ class UserPage extends StatelessWidget{
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 // Handle Settings tap
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const SettingsPage()));
               },
             ),
             ListTile(
