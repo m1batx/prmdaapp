@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
 import 'package:prmda/restraunt.dart';
-import 'package:prmda/services/firestore.dart';
 
 class OrderManagementPage extends StatefulWidget{
   const OrderManagementPage({super.key});
