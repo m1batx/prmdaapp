@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/my_orders_page.dart';
+import 'package:prmda/pages/order_management_page.dart';
 import 'package:prmda/pages/settings_page.dart';
 
 class UserPage extends StatelessWidget{
@@ -27,6 +28,7 @@ class UserPage extends StatelessWidget{
           style: TextStyle(
             color: Colors.red
             ),),
+        backgroundColor: Colors.white,
       ),
       body: FutureBuilder(
         future: getUserDetails(), 
@@ -105,6 +107,16 @@ class UserPage extends StatelessWidget{
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 // Handle Help tap
+              },
+            ),
+            const Spacer(),
+            ListTile(
+              leading: const Icon(Icons.shopping_bag),
+              title: const Text('Управление заказами'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderManagementPage()));
+                // Handle Orders tap
               },
             ),
             const Spacer(),

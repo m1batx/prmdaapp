@@ -699,13 +699,21 @@ class Restraunt extends ChangeNotifier{
     var it = [];
     for (final cartItem in _cart){
       receipt.writeln("${cartItem.quantity} x ${cartItem.food.name} - ${_formatPrice(cartItem.food.price)}");
-      
+      var ad = [];
+      for (Addon addon in cartItem.selectedAddons){
+        Map<String, Object> addonItem = {
+          "addon_name": addon.name,
+          'addon_price': addon.price
+        };
+        ad.add(addonItem);
+      }
       if (cartItem.selectedAddons.isNotEmpty){
         receipt.writeln("     Добавки: ${_formatAddons(cartItem.selectedAddons)}");
       }
       Map<String, Object> foodItem = {
         "food_name": cartItem.food.name,
-        'selceted_addons': cartItem.selectedAddons
+        "quantity": cartItem.quantity,
+        'selceted_addons': ad,
       };
       it.add(foodItem);
       receipt.writeln();

@@ -34,6 +34,7 @@ class MyReceipt extends StatelessWidget{
                     } else if (!snapshot.hasData || snapshot.data == null) {
                       return const Text('Данные не были загружены'); // Display a message if no data is found
                     } else {
+                      restraunt.clearCart();
                       return Text("${snapshot.data}\nАдрес самовывоза: $adress"); // Display the fetched data
                     }
                   },

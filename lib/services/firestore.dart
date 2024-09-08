@@ -7,7 +7,25 @@ class FirestoreService{
   
   //get food
   Future<void> saveOrderToDatabase(Map<String, Object> orderData) async{
-    await orders.add(orderData);
+    String id = '0';
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      QuerySnapshot querySnapshot = await firestore
+          .collection('orders')
+          .orderBy('order_id', descending: true)
+          .limit(1)
+          .get();
+      
+      if (querySnapshot.docs.isNotEmpty) {
+        int lastOrderId = querySnapshot.docs.first['order_id'];
+        id= (lastOrderId+1).toString();
+      }
+        
+      
+    } catch (e) {
+      id = "0";
+    }
+    await orders.doc(id).set(orderData);
   }
 
   Future<int> getLastOrderId() async {
