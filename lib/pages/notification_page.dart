@@ -24,7 +24,7 @@ class NotificationPage extends StatelessWidget {
                 }
                 if (snapshot.hasError) {
                   print('Error: ${snapshot.error} ');
-                  return Center(child: Text(''));
+                  return const Center(child: Text(''));
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Center(child: Text('Нет уведомлений'));
