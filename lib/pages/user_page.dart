@@ -22,13 +22,17 @@ class UserPage extends StatelessWidget{
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:  Colors.white,
       appBar: AppBar(
         title:const Text("Профиль",
           style: TextStyle(
             color: Colors.red
             ),),
+<<<<<<< HEAD
+          backgroundColor: Colors.white,
+=======
         backgroundColor: Colors.white,
+>>>>>>> refs/remotes/origin/master
       ),
       body: FutureBuilder(
         future: getUserDetails(), 
