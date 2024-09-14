@@ -28,11 +28,7 @@ class UserPage extends StatelessWidget{
           style: TextStyle(
             color: Colors.red
             ),),
-<<<<<<< HEAD
-          backgroundColor: Colors.white,
-=======
         backgroundColor: Colors.white,
->>>>>>> refs/remotes/origin/master
       ),
       body: FutureBuilder(
         future: getUserDetails(), 

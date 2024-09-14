@@ -33,6 +33,11 @@ class NotificationPage extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     Map<String, dynamic> notification = snapshot.data![index];
+                    if (notification['timestamp']==null){
+                      return ListTile(
+                      title: Text(notification['title']),
+                      subtitle: Text(notification['body']),);
+                    }
                     Timestamp timestamp = notification['timestamp'];
                     DateTime date = timestamp.toDate();
                     return ListTile(

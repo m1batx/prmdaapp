@@ -23,7 +23,7 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
     docRef.get().then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         docRef.update({
-          'order_status': '${newStatus.toString()}',
+          'order_status': newStatus.toString(),
         }).then((value) {
           print('Order status updated successfully');
         }).catchError((error) {
@@ -104,10 +104,10 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                                       children: [ 
                                         Text('- - ${addons['addon_name']}')
                                         ]);
-                                        }).toList(),
+                                        }),
                                       ],
                                     );
-                                  }).toList(),
+                                  }),
                                   const SizedBox(height: 15,),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
