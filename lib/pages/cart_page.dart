@@ -82,7 +82,7 @@ class _CartPageState extends State<CartPage> {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: GestureDetector(
-                        onTap: ()=>_launchURL('https://ya.ru'),
+                        onTap: ()=>_launchURL('https://eda.yandex.ru/spb/r/piramida'),
                         child: Container(
                             decoration: BoxDecoration(
                               color: Colors.yellow,
