@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,23 @@ class UserPage extends StatelessWidget{
     return await FirebaseFirestore.instance
     .collection("Users").doc(currentUser!.email).get();
   }
-
   
+  Widget OrderManage(context){
+    if (currentUser?.email=="mubinjon9009@mail.ru"||currentUser?.email=="behit@mail.ru"){
+      return 
+            ListTile(
+              leading: const Icon(Icons.shopping_bag),
+              title: const Text('Управление заказами'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderManagementPage()));
+                // Handle Orders tap
+              },
+            );
+    }
+    return const Spacer();
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,15 +126,7 @@ class UserPage extends StatelessWidget{
               },
             ),
             const Spacer(),
-            ListTile(
-              leading: const Icon(Icons.shopping_bag),
-              title: const Text('Управление заказами'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderManagementPage()));
-                // Handle Orders tap
-              },
-            ),
+            OrderManage(context),
             const Spacer(),
             ListTile(
               leading: const Icon(Icons.logout),
