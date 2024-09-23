@@ -47,6 +47,9 @@ class _RegstrPageState extends State<RegstrPage> {
             'email': emailController.text,
             'phone': '',
           });
+          if (!user.emailVerified){
+            await user.sendEmailVerification();
+          }
         }
         Navigator.pop(context);
         FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);

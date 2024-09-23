@@ -5,6 +5,7 @@ import 'package:prmda/components/my_current_location.dart';
 import 'package:prmda/pages/order_page.dart';
 import 'package:prmda/restraunt.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../components/my_button.dart';
 
@@ -79,96 +80,123 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(25),
-                child: MyButton(
-                  onTap: () {
-                    if (userCart.isEmpty) {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text("Корзина пуста"),
-                          content: SizedBox(
-                            height: 30,
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Ок"),
-                              ),
+                padding: const EdgeInsets.all(10),
+                child: GestureDetector(
+                        onTap: ()=>_launchURL('https://eda.yandex.ru/spb/r/piramida'),
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.yellow,
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                          ),
-                        ),
-                      );
-                    } else if (restraunt.address.contains("Адрес не выбран")){
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text("Адрес не выбран"),
-                          content: SizedBox(
-                            height: 30,
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Ок"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }else if (FirebaseAuth.instance.currentUser==null){
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text("Вы не вошли"),
-                          content: SizedBox(
-                            height: 30,
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Ок"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                     else {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text("Подтверждение заказа"),
-                          content: SizedBox(
-                            height: 100,
-                            child: Column(
-                              children: [
-                                Text("Адрес самовывоза: ${restraunt.address}"),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(adress: restraunt.address,)));
-                                  },
-                                  child: const Text("Ок"),
+                            padding: const EdgeInsets.all(10),
+                            child: const Center(
+                              child: Text('Заказать из Yandex',
+                                style:  TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black
                                 ),
-                              ],
-                            ),
+                                ),
+                              ),
                           ),
-                        ),
-                      );
-                    }
-                  },
-                  text: 'Оформить заказ',
-                ),
-              ),
-              
+                      ),),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: MyButton(
+                      onTap: () {
+                        if (userCart.isEmpty) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Корзина пуста"),
+                              content: SizedBox(
+                                height: 30,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("Ок"),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        } else if (restraunt.address.contains("Адрес не выбран")){
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Адрес не выбран"),
+                              content: SizedBox(
+                                height: 30,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("Ок"),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }else if (FirebaseAuth.instance.currentUser==null){
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Вы не вошли"),
+                              content: SizedBox(
+                                height: 30,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("Ок"),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        else {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Подтверждение заказа"),
+                              content: SizedBox(
+                                height: 100,
+                                child: Column(
+                                  children: [
+                                    Text("Адрес самовывоза: ${restraunt.address}"),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(adress: restraunt.address,)));
+                                      },
+                                      child: const Text("Ок"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      text: 'Оформить заказ',
+                    ),          
+                )
             ],
           ),
         );
       },
     );
+  }
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
