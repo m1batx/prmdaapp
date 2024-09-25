@@ -103,7 +103,7 @@ Widget build(BuildContext context) {
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: Text(address),
                   );
-                }).toList(),
+                }),
               ],
             ),
           ),
