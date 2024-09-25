@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/pages/chat_page.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/my_orders_page.dart';
 import 'package:prmda/pages/order_management_page.dart';
@@ -121,7 +122,7 @@ class UserPage extends StatelessWidget{
               title: const Text('Поддержка'),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
-                // Handle Help tap
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ChatPage()));
               },
             ),
             const Spacer(),

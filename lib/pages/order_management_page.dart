@@ -114,7 +114,6 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                                     children: [
                                       MyButton(text: "Готовится", onTap: (){
                                         updateOrderStatus(data['order_id'].toString(),OrderStatus.cooking);
-                                        print(data);
                                       }),
                                       MyButton(text: "Готово", onTap: (){
                                         updateOrderStatus(data['order_id'].toString(),OrderStatus.done);
@@ -123,6 +122,11 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                                         updateOrderStatus(data['order_id'].toString(),OrderStatus.declined);
                                       }),
                                     ]),
+                                    Container(
+                                      child: MyButton(text: "Связаться", onTap: (){
+                                          
+                                      }),
+                                    ),
                                 ])
                               ),
                             ],
