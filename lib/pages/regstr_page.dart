@@ -46,7 +46,9 @@ class _RegstrPageState extends State<RegstrPage> {
             'name': usernameController.text,
             'email': emailController.text,
             'phone': '',
+            'uid': user.uid
           });
+          displayMessageToUser('message', context);
           if (!user.emailVerified){
             await user.sendEmailVerification();
           }

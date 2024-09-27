@@ -19,7 +19,7 @@ class _ChatPageState extends State<ChatPage> {
         'text': _controller.text,
         'senderId': _auth.currentUser!.uid,
         'recipient': 'support',  // All messages are sent to support
-        'timestamp': FieldValue.serverTimestamp(),
+        'timestamp': Timestamp.now(),
       });
       _controller.clear();
     }

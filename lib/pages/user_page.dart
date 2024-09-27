@@ -7,6 +7,7 @@ import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/my_orders_page.dart';
 import 'package:prmda/pages/order_management_page.dart';
 import 'package:prmda/pages/settings_page.dart';
+import 'package:prmda/pages/supportHome_page.dart';
 
 class UserPage extends StatelessWidget{
 
@@ -27,6 +28,22 @@ class UserPage extends StatelessWidget{
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderManagementPage()));
+                // Handle Orders tap
+              },
+            );
+    }
+    return const Spacer();
+    
+  }
+  Widget chatManage(context){
+    if (currentUser?.email=="mubinjon9009@mail.ru"||currentUser?.email=="behit@mail.ru"){
+      return 
+            ListTile(
+              leading: const Icon(Icons.message),
+              title: const Text('Чаты'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> SupportHomePage()));
                 // Handle Orders tap
               },
             );
@@ -128,6 +145,7 @@ class UserPage extends StatelessWidget{
             ),
             const Spacer(),
             OrderManage(context),
+            chatManage(context),
             const Spacer(),
             ListTile(
               leading: const Icon(Icons.logout),

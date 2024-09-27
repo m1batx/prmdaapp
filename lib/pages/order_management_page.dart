@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/components/button.dart';
 import 'package:prmda/restraunt.dart';
@@ -11,15 +12,29 @@ class OrderManagementPage extends StatefulWidget{
 
 }
 class _OrderManagementPageState extends State<OrderManagementPage> {
+
+  final User? currentUser = FirebaseAuth.instance.currentUser;
+  Future<String> getPhone(String uid) async {
+  // Use get() instead of snapshots() to fetch the data one time
+  QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance
+      .collection('Users')
+      .where('uid', isEqualTo: uid)
+      .limit(1)
+      .get();
+
+  // Check if the query returned any documents
+  if (querySnapshot.docs.isEmpty) {
+    throw Exception("No user found with the provided UID");
+  } else {
+    // Access the first document in the query result
+    Map<String, dynamic> data = querySnapshot.docs.first.data();
+    return data['phone'];  // Return the 'phone' field
+  }
+}
   
   Future<void> updateOrderStatus(String documentId, OrderStatus newStatus) async {
-    final DocumentReference docRef = FirebaseFirestore.instance.collection('orders').doc(documentId);
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('orders')
-          .where('order_id', isEqualTo: 2)
-          .limit(1)
-          .get();
-    print(querySnapshot);  
+    final DocumentReference docRef = FirebaseFirestore.instance.collection('orders').doc(documentId); 
+    
     docRef.get().then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         docRef.update({
@@ -109,6 +124,20 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                                     );
                                   }),
                                   const SizedBox(height: 15,),
+                                  FutureBuilder<String>(
+                                    future: getPhone(data['user_id']), // Fetch phone number based on the user's email
+                                    builder: (context, phoneSnapshot) {
+                                      if (phoneSnapshot.connectionState == ConnectionState.waiting) {
+                                        return const CircularProgressIndicator();
+                                      }
+                                      if (phoneSnapshot.hasError) {
+                                        return Text('Ошибка получения номера: ${phoneSnapshot.error}');
+                                      }
+                                      String userPhone = phoneSnapshot.data ?? 'Нет номера';
+                                      return Text(userPhone);
+                                    }),
+                                  //I need to show up phone number here
+                                  const SizedBox(height: 15,),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -122,11 +151,11 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                                         updateOrderStatus(data['order_id'].toString(),OrderStatus.declined);
                                       }),
                                     ]),
-                                    Container(
-                                      child: MyButton(text: "Связаться", onTap: (){
+                                    // Container(
+                                    //   child: MyButton(text: "Связаться", onTap: (){
                                           
-                                      }),
-                                    ),
+                                    //   }),
+                                    // ),
                                 ])
                               ),
                             ],

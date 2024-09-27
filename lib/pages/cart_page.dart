@@ -159,6 +159,25 @@ class _CartPageState extends State<CartPage> {
                             ),
                           );
                         }
+                        else if (FirebaseAuth.instance.currentUser!.emailVerified==false){
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Подтвердите почту"),
+                              content: SizedBox(
+                                height: 30,
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("Ок"),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }
                         else {
                           showDialog(
                             context: context,
