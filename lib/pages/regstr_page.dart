@@ -48,7 +48,6 @@ class _RegstrPageState extends State<RegstrPage> {
             'phone': '',
             'uid': user.uid
           });
-          displayMessageToUser('message', context);
           if (!user.emailVerified){
             await user.sendEmailVerification();
           }
