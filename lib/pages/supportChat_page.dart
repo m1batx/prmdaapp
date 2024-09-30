@@ -19,7 +19,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
       await _firestore.collection('chats').add({
         'text': _controller.text,
         'senderId': 'support',
-        'recipientId': widget.userId, // Send the message to the selected user
+        'recipient': widget.userId, // Send the message to the selected user
         'timestamp': Timestamp.now(),
       });
       _controller.clear();
@@ -30,12 +30,12 @@ class _SupportChatPageState extends State<SupportChatPage> {
     return Align(
       alignment: isSupportMessage ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         decoration: BoxDecoration(
           color: isSupportMessage ? Colors.blueAccent : Colors.grey.shade300,
           borderRadius: BorderRadius.circular(15.0),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black26,
               blurRadius: 4.0,
@@ -54,7 +54,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
                 fontSize: 16.0,
               ),
             ),
-            SizedBox(height: 4.0),
+            const SizedBox(height: 4.0),
             Text(
               isSupportMessage ? "Support" : "User",
               style: TextStyle(
@@ -78,10 +78,10 @@ class _SupportChatPageState extends State<SupportChatPage> {
             child: StreamBuilder<QuerySnapshot>(
               stream: _firestore
                   .collection('chats')
-                  .where('recipientId', isEqualTo: widget.userId)
+                  .where('recipient', isEqualTo: widget.userId)
                   .snapshots(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData) return CircularProgressIndicator();
+                if (!snapshot.hasData) return const CircularProgressIndicator();
 
                 // Fetch all messages between support and this user
                 final userMessages = snapshot.data!.docs;
@@ -93,7 +93,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
                 return StreamBuilder<QuerySnapshot>(
                   stream: supportMessagesStream,
                   builder: (context, supportSnapshot) {
-                    if (!supportSnapshot.hasData) return CircularProgressIndicator();
+                    if (!supportSnapshot.hasData) return const CircularProgressIndicator();
 
                     // Combine user and support messages
                     final supportMessages = supportSnapshot.data!.docs;
@@ -134,7 +134,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: _sendMessage,
                   color: Colors.blueAccent,
                 ),

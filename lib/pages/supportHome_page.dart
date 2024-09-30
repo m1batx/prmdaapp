@@ -28,19 +28,20 @@ class SupportHomePage extends StatelessWidget {
             itemCount: users.length,
             itemBuilder: (context, index) {
               final userId = users[index];
-              
-              return ListTile(
-                title: Text('Пользователь: $userId'),
-                onTap: () {
-                  // Navigate to the chat screen with the selected user
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SupportChatPage(userId: userId),
-                    ),
-                  );
-                },
-              );
+              if (userId!="support"){
+                return ListTile(
+                  title: Text('Пользователь: $userId'),
+                  onTap: () {
+                    // Navigate to the chat screen with the selected user
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SupportChatPage(userId: userId),
+                      ),
+                    );
+                  },
+                );
+              }
             },
           );
         },
