@@ -9,6 +9,7 @@ import 'package:prmda/pages/notification_page.dart';
 import 'package:prmda/pages/o_nas.dart';
 import 'package:prmda/pages/user_page.dart';
 import 'package:prmda/restraunt.dart';
+import 'package:prmda/splash-screen.dart';
 import 'package:provider/provider.dart';
 import 'pages/regstr_page.dart';
 import 'pages/home_page.dart';
@@ -17,12 +18,6 @@ import 'firebase_options.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await FirebaseApi().initNotifications();
-
   runApp(
     MultiProvider(
       providers: [
@@ -31,6 +26,13 @@ void main() async {
       child: const MyApp(),
     ),
   );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseApi().initNotifications();
+
+  
 }
 
 class MyApp extends StatefulWidget {
@@ -68,17 +70,13 @@ class _MyAppState extends State<MyApp> {
       future: _internetCheckFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // Пока идет проверка, показываем индикатор загрузки
-          return MaterialApp(
+          // Show the splash screen while waiting
+          return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
+            home: SplashScreen(), // Show splash screen
           );
         } else if (snapshot.hasError || !snapshot.data!) {
-          // Если нет подключения к интернету
+          // If there is no internet connection
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             home: Scaffold(
@@ -87,13 +85,13 @@ class _MyAppState extends State<MyApp> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Нет подключения к интернету",
+                      "No internet connection",
                       style: TextStyle(fontSize: 20, color: Colors.red),
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _retryConnection,
-                      child: const Text("Попробовать снова"),
+                      child: const Text("Try again"),
                     ),
                   ],
                 ),
@@ -101,10 +99,10 @@ class _MyAppState extends State<MyApp> {
             ),
           );
         } else {
-          // Если подключение есть, запускаем основное приложение
+          // If there is an internet connection, start the main app
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: const HomeScreen(), // Загрузка основной страницы
+            home: const HomeScreen(), // Load home screen
             navigatorKey: navigatorKey,
             routes: {
               '/homepage': (context) => const HomePage(),
