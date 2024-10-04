@@ -242,12 +242,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      const Text(
+                      Text(
                         "Курица", 
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.inversePrimary, 
                         ),
                         )
                       ],
@@ -278,12 +279,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "Фалафель", 
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.inversePrimary, 
                       ),
                       )
                     ],
@@ -314,12 +316,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "Говядина", 
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.inversePrimary, 
                       ),
                       )
                     ],
@@ -350,12 +353,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "Креветки", 
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.inversePrimary, 
                       ),
                       )
                     ],
@@ -386,12 +390,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "Напитки", 
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.inversePrimary, 
                       ),
                       )
                     ],
@@ -447,12 +452,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 248, 246, 244),
+      backgroundColor: Theme.of(context).colorScheme.background,
       resizeToAvoidBottomInset: false,
       drawer: const MyDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,// HAVE TO UPDATE
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.inversePrimary,),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        elevation: 0,
+        // HAVE TO UPDATE
         title: const Stack(
           children: [
             Center(
@@ -474,7 +481,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
             IconButton(
-              icon: const Icon(Icons.notifications_outlined), // Right side icon
+              icon: Icon(Icons.notifications_outlined,color: Theme.of(context).colorScheme.inversePrimary,), // Right side icon
               onPressed: () {
                Navigator.push(context, MaterialPageRoute(builder: (context)=> const NotificationPage()));
               },

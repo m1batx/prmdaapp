@@ -35,27 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).colorScheme.background,
         color: Colors.red,
         animationDuration: const Duration(milliseconds: 300),
         index: _selectedIndex,
         onTap: _onItemTapped,
-        items: const [
+        items:  [
           Icon(
             Icons.home,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
           Icon(
             Icons.store,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
           Icon(
             Icons.shopping_cart,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
           Icon(
             Icons.account_circle,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
         ],
       ),

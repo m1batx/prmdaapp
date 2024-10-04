@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/api/FirebaseApi.dart';
+import 'package:prmda/components/theme_provider.dart';
 import 'package:prmda/home_screen.dart';
 import 'package:prmda/pages/cart_page.dart';
 import 'package:prmda/pages/login_page.dart';
@@ -22,6 +23,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => Restraunt()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
       child: const MyApp(),
     ),
@@ -79,7 +81,9 @@ class _MyAppState extends State<MyApp> {
           // If there is no internet connection
           return MaterialApp(
             debugShowCheckedModeBanner: false,
+            theme: Provider.of<ThemeProvider>(context).themeData,
             home: Scaffold(
+              
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -101,6 +105,7 @@ class _MyAppState extends State<MyApp> {
         } else {
           // If there is an internet connection, start the main app
           return MaterialApp(
+            theme: Provider.of<ThemeProvider>(context).themeData,
             debugShowCheckedModeBanner: false,
             home: const HomeScreen(), // Load home screen
             navigatorKey: navigatorKey,

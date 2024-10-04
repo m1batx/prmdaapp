@@ -51,15 +51,14 @@ class FirebaseApi {
   // Load all notifications by user ID and date
   Future<List<Map<String, dynamic>>> loadNotifications() async {
     User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      QuerySnapshot querySnapshot = await _firestore
-          .collection('notifications')
-          .orderBy('timestamp', descending: true)
-          .get();
-      
-      return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
-    }
-    return [];
+    
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('notifications')
+        .orderBy('timestamp', descending: true)
+        .get();
+    return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+  
+    
   }
   // Future<List<Map<String, dynamic>>> loadNotifications() async {
   //   User? user = FirebaseAuth.instance.currentUser;

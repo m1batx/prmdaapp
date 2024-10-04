@@ -28,7 +28,12 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Точки самовывоза"),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title:  Text(
+          "Точки самовывоза", 
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.inversePrimary
+          )),
         content: SizedBox(
           width: double.maxFinite,
           child: ListView.builder(
@@ -37,7 +42,10 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
             itemBuilder: (context, index) {
               
               return ListTile(
-                title: Text(addresses[index]),
+                title: Text(addresses[index], 
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.inversePrimary
+                  )),
                 onTap: () {
                   setState(() {
                     selectedAddress = context.read<Restraunt>().changeAddress(addresses[index]);
@@ -63,9 +71,9 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+           Text(
             "Самовывоз",
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
           ),
           GestureDetector(
             onTap: () => openLocationSearchBox(context),
@@ -73,12 +81,12 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
               children: [
                 Text(
                   selectedAddress,
-                  style: const TextStyle(
-                    color: Colors.red,
+                  style:  TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Icon(Icons.keyboard_arrow_down_rounded),
+                 Icon(Icons.keyboard_arrow_down_rounded, color: Theme.of(context).colorScheme.inversePrimary,),
               ],
             ),
           ),

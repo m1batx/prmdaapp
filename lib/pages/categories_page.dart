@@ -18,6 +18,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   int indexCategory = 0;
   List<int> index = [];
    Widget categories() {
+    
     List list = ['Шаверма', 'Бургеры', 'Фалафель', 'Хот-доги', 'Напитки'];
     return SizedBox(
       height: 70,
@@ -44,7 +45,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 list[index],
                 style: TextStyle(
                   fontSize: 20,
-                  color: indexCategory == index ? Colors.red : Colors.grey,
+                  color: indexCategory == index ? Colors.red : Theme.of(context).colorScheme.inversePrimary,
                   fontWeight: indexCategory == index ? FontWeight.bold : null,
                 ),
               ),
@@ -188,6 +189,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
           children: [
             categories(),
