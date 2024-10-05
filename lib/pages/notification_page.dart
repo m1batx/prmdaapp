@@ -9,8 +9,16 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Text("Уведомления"),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title:  Text(
+          "Уведомления",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.inversePrimary,
+          ),
+          ),
         elevation: 0,
       ),
       body: Column(
@@ -27,7 +35,7 @@ class NotificationPage extends StatelessWidget {
                   return const Center(child: Text(''));
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Center(child: Text('Нет уведомлений'));
+                  return Center(child: Text('Нет уведомлений', style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,),));
                 }
                 return ListView.builder(
                   itemCount: snapshot.data!.length,
@@ -35,15 +43,15 @@ class NotificationPage extends StatelessWidget {
                     Map<String, dynamic> notification = snapshot.data![index];
                     if (notification['timestamp']==null){
                       return ListTile(
-                      title: Text(notification['title']),
-                      subtitle: Text(notification['body']),);
+                      title: Text(notification['title'], style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,)),
+                      subtitle: Text(notification['body'], style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,)),);
                     }
                     Timestamp timestamp = notification['timestamp'];
                     DateTime date = timestamp.toDate();
                     return ListTile(
-                      title: Text(notification['title']),
-                      subtitle: Text(notification['body']),
-                      trailing: Text(date.toString()),
+                      title: Text(notification['title'], style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,)),
+                      subtitle: Text(notification['body'], style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,)),
+                      trailing: Text(date.toString(), style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,)),
                     );
                   },
                 );

@@ -78,6 +78,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
     return Stack(
       children: [
         Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,29 +93,29 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                     children: [
                       Text(
                         getMeatTypeString(widget.food.meatType),
-                        style: const TextStyle(
-                            color: Colors.grey,
+                        style:  TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
                             fontWeight: FontWeight.bold,
                           ),
                       ),
                       Text(
                         widget.food.name,
-                        style: GoogleFonts.acme(fontSize: 28),
+                        style: GoogleFonts.acme(fontSize: 28, color: Theme.of(context).colorScheme.inversePrimary,),
                         textAlign: TextAlign.left, // You can remove this now
                       ),
                       const SizedBox(height: 16),
-                      const Text(
+                      Text(
                         "Описание",
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                       ),
                       Text(
                         widget.food.Description,
-                        style: const TextStyle(
-                          color: Colors.grey,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
                           fontSize: 14,
                           height: 2,
                         ),
@@ -131,11 +132,16 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               itemBuilder: (context,index) {
                 Addon addon = widget.food.availableAddons[index];
                 return CheckboxListTile(
-                  title: Text(addon.name),
+                  checkColor: Theme.of(context).colorScheme.inversePrimary,
+                  title: Text(
+                    addon.name,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),),
                   subtitle: Text(
                     '${addon.price}₽',
-                    style: const TextStyle(
-                      color: Colors.red
+                    style:  TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   value: widget.selectedAddon[addon], 

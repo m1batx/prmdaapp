@@ -50,8 +50,13 @@ class MyCartTile extends StatelessWidget{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(cartItem.food.name,
-                      softWrap: true,),
-                      Text("${cartItem.food.price} ₽"),
+                      softWrap: true,style: TextStyle(
+                        color: Theme.of(context).colorScheme.inversePrimary
+                      )),
+                      Text("${cartItem.food.price} ₽",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.inversePrimary
+                      )),
                       QuantitySelector(
                     quantity: cartItem.quantity, 
                     food: cartItem.food, 
@@ -80,11 +85,18 @@ class MyCartTile extends StatelessWidget{
                       (addon)=>Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: FilterChip(
+                          backgroundColor:  Theme.of(context).colorScheme.background,
                           label: Row(
                             children: [
-                              Text(addon.name),
+                              Text(addon.name,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.inversePrimary
+                              )),
 
-                              Text(' (${addon.price} ₽)')
+                              Text(' (${addon.price} ₽)',
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                              ))
                             ],
                           ),
                           shape: const StadiumBorder(

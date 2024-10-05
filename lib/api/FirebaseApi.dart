@@ -50,7 +50,6 @@ class FirebaseApi {
 
   // Load all notifications by user ID and date
   Future<List<Map<String, dynamic>>> loadNotifications() async {
-    User? user = FirebaseAuth.instance.currentUser;
     
     QuerySnapshot querySnapshot = await _firestore
         .collection('notifications')

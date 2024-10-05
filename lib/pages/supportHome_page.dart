@@ -42,6 +42,9 @@ class SupportHomePage extends StatelessWidget {
                   },
                 );
               }
+              else{
+                return null;
+              }
             },
           );
         },
