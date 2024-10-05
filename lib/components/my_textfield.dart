@@ -15,6 +15,9 @@
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.inversePrimary,
+      ),
       controller: controller,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -41,7 +44,10 @@
         hintText: hintText,
         hintStyle: TextStyle(
           color: Theme.of(context).colorScheme.inversePrimary
-        )
+        ),
+        focusColor: Theme.of(context).colorScheme.inversePrimary,
+        fillColor: Theme.of(context).colorScheme.inversePrimary,
+        
         ),
         obscureText: obscureText,
     );
