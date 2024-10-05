@@ -35,7 +35,7 @@ class MyOrdersPage extends StatelessWidget {
               return ListTile(
                 title: Text('Номер заказа: ${data['order_id']}'),
                 subtitle: Text('Сумма: ${data['total_amount']} ₽'),
-                trailing: Text('Статус: ${OrderStatusToString(OrderStatus.values.byName(status))}'),
+                trailing: Text('Статус: ${ClientOrderStatusToString(OrderStatus.values.byName(status))}'),
               );
             }).toList(),
           );

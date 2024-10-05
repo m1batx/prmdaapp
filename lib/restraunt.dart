@@ -755,3 +755,17 @@ String OrderStatusToString(OrderStatus status){
       return "Неизвестно";
   }
 }
+String ClientOrderStatusToString(OrderStatus status){
+  switch (status){
+    case OrderStatus.done:
+      return ("Заказ готов к выдаче");
+    case OrderStatus.cooking:
+      return ("В процессе");
+    case OrderStatus.processing:
+     return "Обрабатывается";
+    case OrderStatus.declined:
+     return "Отменен";
+    default:
+      return "Неизвестно";
+  }
+}
