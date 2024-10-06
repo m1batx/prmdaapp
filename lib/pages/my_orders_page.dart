@@ -10,8 +10,11 @@ class MyOrdersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Text('Мои заказы'),
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title:  Text('Мои заказы',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -23,16 +26,17 @@ class MyOrdersPage extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Center(child: Text('Ошибка: ${snapshot.error}'));
+            return Center(child: Text('Ошибка: ${snapshot.error}',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),));
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('Заказов нет'));
+            return Center(child: Text('Заказов нет',style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),));
           }
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
               String status = data['order_status'].toString().replaceFirst('OrderStatus.',"");
               return ListTile(
+                textColor: Theme.of(context).colorScheme.inversePrimary,
                 title: Text('Номер заказа: ${data['order_id']}'),
                 subtitle: Text('Сумма: ${data['total_amount']} ₽'),
                 trailing: Text('Статус: ${ClientOrderStatusToString(OrderStatus.values.byName(status))}'),

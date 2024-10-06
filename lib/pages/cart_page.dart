@@ -271,7 +271,8 @@ class _CartPageState extends State<CartPage> {
                       text: 'Оформить заказ',
                       
                     ),          
-                )
+                ),
+                const SizedBox(height: 80,),
             ],
           ),
         );

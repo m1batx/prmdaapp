@@ -34,9 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
+      extendBody: true,
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        color: Colors.red,
+        backgroundColor: Colors.transparent,
+        color: Theme.of(context).colorScheme.primary,
         animationDuration: const Duration(milliseconds: 300),
         index: _selectedIndex,
         onTap: _onItemTapped,
