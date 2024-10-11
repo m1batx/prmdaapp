@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _internetCheckFuture = _checkInternetConnection();
+    imageCache.clear();
   }
 
   // Метод для проверки интернет-соединения

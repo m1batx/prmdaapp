@@ -3,7 +3,7 @@ import 'package:prmda/components/dark_mode.dart';
 import 'package:prmda/components/light_mode.dart';
 
 class ThemeProvider with ChangeNotifier {
-  ThemeData _themeData = darkMode;//change it
+  ThemeData _themeData = lightMode;
   ThemeData get themeData => _themeData;
   
   bool get isDarkMode => themeData==darkMode;
