@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                   height: 261,
                   width: 180,
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Stack(
@@ -152,6 +152,9 @@ class _HomePageState extends State<HomePage> {
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.inversePrimary,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -161,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Text(
                                   getMeatTypeString(food.meatType),
-                                  style: TextStyle(color: Colors.grey[600]),
+                                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                                 ),
                               ],
                             ),
@@ -170,8 +173,8 @@ class _HomePageState extends State<HomePage> {
                             padding: const EdgeInsets.all(16),
                             child: Text(
                               '${food.price} ₽',
-                              style: const TextStyle(
-                                color: Colors.black,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.inversePrimary,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                               ),
@@ -201,8 +204,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                  ),
-                    ],
+                  )],
                   ),
                 ),
               ));

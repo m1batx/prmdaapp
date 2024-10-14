@@ -108,7 +108,7 @@ class _MeatCategoriesPageState extends State<MeatCategoriesPage> {
                   height: 261,
                   width: 180,
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Stack(
@@ -136,6 +136,9 @@ class _MeatCategoriesPageState extends State<MeatCategoriesPage> {
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.inversePrimary,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -145,7 +148,7 @@ class _MeatCategoriesPageState extends State<MeatCategoriesPage> {
                               children: [
                                 Text(
                                   getMeatTypeString(food.meatType),
-                                  style: TextStyle(color: Colors.grey[600]),
+                                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                                 ),
                               ],
                             ),
@@ -154,8 +157,8 @@ class _MeatCategoriesPageState extends State<MeatCategoriesPage> {
                             padding: const EdgeInsets.all(16),
                             child: Text(
                               '${food.price} ₽',
-                              style: const TextStyle(
-                                color: Colors.black,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.inversePrimary,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                               ),
