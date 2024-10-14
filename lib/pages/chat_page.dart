@@ -72,10 +72,50 @@ class _ChatPageState extends State<ChatPage> {
                       itemBuilder: (context, index) {
                         final message = allMessages[index];
                         final isUserMessage = message['senderId'] == _auth.currentUser!.uid;
-                        return ListTile(
-                          title: Text(isUserMessage ? 'Вы' : 'Поддержка'),
-                          subtitle: Text(message['text']),
+                        // return ListTile(
+                        //   title: Text(isUserMessage ? 'Вы' : 'Поддержка',textAlign: isUserMessage? TextAlign.right : TextAlign.left, style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,),),
+                        //   subtitle: Text(message['text'], style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),)
                           
+                        // );
+                        return Align(
+                          alignment: isUserMessage ? Alignment.centerRight : Alignment.centerLeft,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                            decoration: BoxDecoration(
+                              color: isUserMessage ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                              borderRadius: BorderRadius.circular(15.0),
+                              // boxShadow:  [
+                              //   BoxShadow(
+                              //     color: Theme.of(context).colorScheme.inversePrimary,
+                              //     blurRadius: 4.0,
+                              //     offset: Offset(2, 2),
+                              //   ),
+                              // ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment:
+                                  isUserMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  isUserMessage ? "Вы" : "Поддержка",
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: isUserMessage ? Colors.white : Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  message['text'],
+                                  style: TextStyle(
+                                    color: isUserMessage ? Colors.white : Colors.black,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                const SizedBox(height: 4.0),
+                                
+                              ],
+                            ),
+                          ),
                         );
                       },
                     );
@@ -90,12 +130,17 @@ class _ChatPageState extends State<ChatPage> {
               children: [
                 Expanded(
                   child: TextField(
+                    style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
                     controller: _controller,
-                    decoration: const InputDecoration(labelText: "Сообщение"),
+                    decoration: InputDecoration(
+                      labelText: "Сообщение", 
+                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+                    ),
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.send),
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  icon: Icon(Icons.send),
                   onPressed: _sendMessage,
                 ),
               ],

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prmda/components/theme_provider.dart';
+import 'package:prmda/pages/chat_page.dart';
 import 'package:prmda/pages/o_nas.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,15 @@ class MyDrawer extends StatelessWidget{
               Navigator.push(context, MaterialPageRoute(builder: (context)=>const ONas()));
             },
           ),
+          ListTile(
+              iconColor: Theme.of(context).colorScheme.inversePrimary,
+              textColor: Theme.of(context).colorScheme.inversePrimary,
+              leading: const Icon(Icons.help),
+              title: const Text('П О Д Д Е Р Ж К А'),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ChatPage()));
+              },
+            ),
           const Spacer(),
           Container(
             decoration: BoxDecoration(
