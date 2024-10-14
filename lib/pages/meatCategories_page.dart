@@ -53,7 +53,7 @@ class _MeatCategoriesPageState extends State<MeatCategoriesPage> {
                 list[index],
                 style: TextStyle(
                   fontSize: 20,
-                  color: indexCategory == index ? Colors.red : Colors.grey,
+                  color: indexCategory == index ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.tertiary,
                   fontWeight: indexCategory == index ? FontWeight.bold : null,
                 ),
               ),
@@ -197,7 +197,10 @@ class _MeatCategoriesPageState extends State<MeatCategoriesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Категории"),
         elevation: 0,
       ),

@@ -18,7 +18,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
   int indexCategory = 0;
   List<int> index = [];
    Widget categories() {
-    
     List list = ['Шаверма', 'Бургеры', 'Фалафель', 'Хот-доги', 'Напитки'];
     return SizedBox(
       height: 70,
