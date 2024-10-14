@@ -23,9 +23,11 @@ class UserPage extends StatelessWidget{
     if (currentUser?.email=="mubinjon9009@mail.ru"||currentUser?.email=="behit@mail.ru"){
       return 
             ListTile(
-              leading: const Icon(Icons.shopping_bag),
-              title: const Text('Управление заказами'),
-              trailing: const Icon(Icons.arrow_forward_ios),
+              iconColor: Theme.of(context).colorScheme.inversePrimary,
+              textColor: Theme.of(context).colorScheme.inversePrimary,
+              leading:  const Icon(Icons.shopping_bag),
+              title:  const Text('Управление заказами'),
+              trailing:  const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderManagementPage()));
                 // Handle Orders tap
@@ -39,6 +41,8 @@ class UserPage extends StatelessWidget{
     if (currentUser?.email=="mubinjon9009@mail.ru"||currentUser?.email=="behit@mail.ru"){
       return 
             ListTile(
+              iconColor: Theme.of(context).colorScheme.inversePrimary,
+              textColor: Theme.of(context).colorScheme.inversePrimary,
               leading: const Icon(Icons.message),
               title: const Text('Чаты'),
               trailing: const Icon(Icons.arrow_forward_ios),
@@ -56,13 +60,13 @@ class UserPage extends StatelessWidget{
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor:  Colors.white,
+      backgroundColor:  Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title:const Text("Профиль",
+        title: Text("Профиль",
           style: TextStyle(
-            color: Colors.red
+            color: Theme.of(context).colorScheme.inversePrimary
             ),),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
       ),
       body: FutureBuilder(
         future: getUserDetails(), 
@@ -77,7 +81,7 @@ class UserPage extends StatelessWidget{
             return const LoginPage();
           }
           else if (!snapshot.hasData || !snapshot.data!.exists) {
-            return const Center(child: Text('Данные пользователя не найдены'));
+            return  Center(child: Text('Данные пользователя не найдены', style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,),));
           }
           else if (snapshot.hasData){
             var userData = snapshot.data!.data()!;
@@ -89,7 +93,7 @@ class UserPage extends StatelessWidget{
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
+                border: Border.all(color: Theme.of(context).colorScheme.tertiary,),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Row(
@@ -104,12 +108,12 @@ class UserPage extends StatelessWidget{
                     children: [
                       Text(
                         userData['name'], // Replace with dynamic data
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Theme.of(context).colorScheme.inversePrimary),
                       ),
                       const SizedBox(height: 5),
                       Text(
                         userData['email'], // Replace with dynamic data
-                        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                        style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.tertiary,),
                       ),
                     ],
                   ),
@@ -118,6 +122,8 @@ class UserPage extends StatelessWidget{
             ),
             const SizedBox(height: 20),
             ListTile(
+              iconColor: Theme.of(context).colorScheme.inversePrimary,
+              textColor: Theme.of(context).colorScheme.inversePrimary,
               leading: const Icon(Icons.shopping_bag),
               title: const Text('Заказы'),
               trailing: const Icon(Icons.arrow_forward_ios),
@@ -127,6 +133,8 @@ class UserPage extends StatelessWidget{
               },
             ),
             ListTile(
+              iconColor: Theme.of(context).colorScheme.inversePrimary,
+              textColor: Theme.of(context).colorScheme.inversePrimary,
               leading: const Icon(Icons.settings),
               title: const Text('Настройки'),
               trailing: const Icon(Icons.arrow_forward_ios),
@@ -136,6 +144,8 @@ class UserPage extends StatelessWidget{
               },
             ),
             ListTile(
+              iconColor: Theme.of(context).colorScheme.inversePrimary,
+              textColor: Theme.of(context).colorScheme.inversePrimary,
               leading: const Icon(Icons.help),
               title: const Text('Поддержка'),
               trailing: const Icon(Icons.arrow_forward_ios),
@@ -148,6 +158,8 @@ class UserPage extends StatelessWidget{
             chatManage(context),
             const Spacer(),
             ListTile(
+              iconColor: Theme.of(context).colorScheme.inversePrimary,
+              textColor: Theme.of(context).colorScheme.inversePrimary,
               leading: const Icon(Icons.logout),
               title: const Text('Выйти'),
               trailing: const Icon(Icons.arrow_forward_ios),
@@ -156,12 +168,13 @@ class UserPage extends StatelessWidget{
                 // Handle Log out tap
               },
             ),
+            const SizedBox(height: 80,),
           ],
         ),
       );
     }
           else{
-            return const Text("No data!");
+            return Text("No data!", style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),);
           }
         }
       ),

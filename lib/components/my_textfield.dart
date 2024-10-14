@@ -15,12 +15,39 @@
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.inversePrimary,
+      ),
       controller: controller,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20)
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.inversePrimary,
+            width: 1.0,
+          ),
         ),
-          hintText: hintText,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            width: 1.0,
+          ),
+        ),
+        // border: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(20),
+        //   borderSide: BorderSide(
+        //     color: Theme.of(context).colorScheme.inversePrimary,
+        //     width: 1.0,
+        //   ),
+        // ),
+        hintText: hintText,
+        hintStyle: TextStyle(
+          color: Theme.of(context).colorScheme.inversePrimary
+        ),
+        focusColor: Theme.of(context).colorScheme.inversePrimary,
+        fillColor: Theme.of(context).colorScheme.inversePrimary,
+        
         ),
         obscureText: obscureText,
     );

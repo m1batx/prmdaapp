@@ -25,32 +25,52 @@ class _CartPageState extends State<CartPage> {
         final userCart = restraunt.cart;
 
         return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            title: const Text("Корзина"),
+            backgroundColor: Theme.of(context).colorScheme.background,
+            title:  Text(
+              "Корзина",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.inversePrimary, 
+              ),
+              ),
             actions: [
               IconButton(
                 onPressed: () {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: const Text('Вы уверены?'),
+                      title:  Text(
+                        'Вы уверены?',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary, 
+                        ),),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                             restraunt.clearCart();
                           },
-                          child: const Text("Да"),
+                          child:  Text(
+                            "Да",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.inversePrimary, 
+                            ),),
                         ),
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text("Нет", style: TextStyle(color: Colors.red)),
+                          child:  Text(
+                            "Нет", 
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary
+                            )
+                          ),
                         ),
                       ],
                     ),
                   );
                 },
-                icon: const Icon(Icons.delete),
+                icon:  Icon(Icons.delete, color: Theme.of(context).colorScheme.inversePrimary,),
               ),
             ],
           ),
@@ -61,9 +81,14 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     MyCurrentLocation(selectedAddress: restraunt.address,),
                     userCart.isEmpty
-                        ? const Expanded(
+                        ?  Expanded(
                             child: Center(
-                              child: Text("Корзина пуста"),
+                              child: Text(
+                                "Корзина пуста", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )
+                              ),
                             ),
                           )
                         : SizedBox(
@@ -94,7 +119,7 @@ class _CartPageState extends State<CartPage> {
                                 style:  TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
-                                  color: Colors.black
+                                  color: Colors.black,
                                 ),
                                 ),
                               ),
@@ -108,7 +133,12 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text("Корзина пуста"),
+                              backgroundColor: Theme.of(context).colorScheme.background,
+                              title:  Text(
+                                "Корзина пуста",
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )),
                               content: SizedBox(
                                 height: 30,
                                 child: Center(
@@ -116,7 +146,10 @@ class _CartPageState extends State<CartPage> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: const Text("Ок"),
+                                    child: Text("Ок", 
+                                    style: TextStyle(
+                                      color: Theme.of(context).colorScheme.inversePrimary
+                                    )),
                                   ),
                                 ),
                               ),
@@ -126,7 +159,11 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text("Адрес не выбран"),
+                              backgroundColor: Theme.of(context).colorScheme.background,
+                              title:  Text("Адрес не выбран", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )),
                               content: SizedBox(
                                 height: 30,
                                 child: Center(
@@ -134,7 +171,10 @@ class _CartPageState extends State<CartPage> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: const Text("Ок"),
+                                    child:  Text("Ок", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )),
                                   ),
                                 ),
                               ),
@@ -144,7 +184,11 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text("Вы не вошли"),
+                              backgroundColor: Theme.of(context).colorScheme.background,
+                              title: Text("Вы не вошли", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )),
                               content: SizedBox(
                                 height: 30,
                                 child: Center(
@@ -152,7 +196,10 @@ class _CartPageState extends State<CartPage> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: const Text("Ок"),
+                                    child: Text("Ок", 
+                                    style: TextStyle(
+                                      color: Theme.of(context).colorScheme.inversePrimary
+                                    )),
                                   ),
                                 ),
                               ),
@@ -163,7 +210,11 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text("Подтвердите почту"),
+                              backgroundColor: Theme.of(context).colorScheme.background,
+                              title: Text("Подтвердите почту", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )),
                               content: SizedBox(
                                 height: 30,
                                 child: Center(
@@ -171,7 +222,10 @@ class _CartPageState extends State<CartPage> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: const Text("Ок"),
+                                    child: Text("Ок", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )),
                                   ),
                                 ),
                               ),
@@ -182,18 +236,30 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text("Подтверждение заказа"),
+                              backgroundColor: Theme.of(context).colorScheme.background,
+                              title:  Text("Подтверждение заказа", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary
+                                )
+                              ),
                               content: SizedBox(
                                 height: 100,
                                 child: Column(
+                                  
                                   children: [
-                                    Text("Адрес самовывоза: ${restraunt.address}"),
+                                    Text("Адрес самовывоза: ${restraunt.address}", 
+                                      style: TextStyle(
+                                        color: Theme.of(context).colorScheme.inversePrimary
+                                      )),
                                     TextButton(
                                       onPressed: () {
                                         Navigator.pop(context);
                                         Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(adress: restraunt.address,)));
                                       },
-                                      child: const Text("Ок"),
+                                      child: Text("Ок", 
+                                      style: TextStyle(
+                                        color: Theme.of(context).colorScheme.inversePrimary
+                                      )),
                                     ),
                                   ],
                                 ),
@@ -203,8 +269,10 @@ class _CartPageState extends State<CartPage> {
                         }
                       },
                       text: 'Оформить заказ',
+                      
                     ),          
-                )
+                ),
+                const SizedBox(height: 80,),
             ],
           ),
         );

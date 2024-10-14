@@ -34,28 +34,30 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
+      extendBody: true,
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
-        color: Colors.red,
+        color: Theme.of(context).colorScheme.primary,
         animationDuration: const Duration(milliseconds: 300),
         index: _selectedIndex,
         onTap: _onItemTapped,
-        items: const [
+        items:  [
           Icon(
             Icons.home,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
           Icon(
             Icons.store,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
           Icon(
             Icons.shopping_cart,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
           Icon(
             Icons.account_circle,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background, 
           ),
         ],
       ),

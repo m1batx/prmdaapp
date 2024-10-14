@@ -19,7 +19,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
       await _firestore.collection('chats').add({
         'text': _controller.text,
         'senderId': 'support',
-        'recipientId': widget.userId, // Send the message to the selected user
+        'recipient': widget.userId, // Send the message to the selected user
         'timestamp': Timestamp.now(),
       });
       _controller.clear();
@@ -78,7 +78,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
             child: StreamBuilder<QuerySnapshot>(
               stream: _firestore
                   .collection('chats')
-                  .where('recipientId', isEqualTo: widget.userId)
+                  .where('recipient', isEqualTo: widget.userId)
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const CircularProgressIndicator();

@@ -64,6 +64,7 @@ class _RegstrPageState extends State<RegstrPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -77,15 +78,16 @@ class _RegstrPageState extends State<RegstrPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
+               Icon(
                 Icons.person,
                 size: 80,
+                color: Theme.of(context).colorScheme.inversePrimary,
               ),
 
               const SizedBox(height: 25),
-              const Text(
+              Text(
                 "РЕГИСТРАЦИЯ",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, color: Theme.of(context).colorScheme.inversePrimary),
               ),
 
               //username textfield
@@ -135,15 +137,19 @@ class _RegstrPageState extends State<RegstrPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Уже есть аккаунт?"
+                  Text(
+                    "Уже есть аккаунт?",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {Navigator.pushNamed(context,'/login');},
-                    child: const Text(
+                    child: Text(
                       "Войти",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     )
                   )

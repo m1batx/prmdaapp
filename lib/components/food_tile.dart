@@ -19,7 +19,7 @@ class FoodTile extends StatelessWidget {
     child: Container(
       child: Container(
       decoration: BoxDecoration(
-        color: Colors.grey[100],
+        color: Theme.of(context).colorScheme.background,
         borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.only(left: 25),
@@ -31,7 +31,7 @@ class FoodTile extends StatelessWidget {
           Image.asset(food.ImagePath, height: 140),
           Text(
             food.name,
-            style: GoogleFonts.acme(fontSize: 20),
+            style: GoogleFonts.acme(fontSize: 20,color: Theme.of(context).colorScheme.inversePrimary,),
           ),
           SizedBox(
             width: 160,
@@ -40,9 +40,9 @@ class FoodTile extends StatelessWidget {
               children: [
                 Text(
                   '₽${food.price}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+                    color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
                 Row(
@@ -51,7 +51,7 @@ class FoodTile extends StatelessWidget {
                     
                     Text(
                       food.Description,
-                      style: const TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,),
                     ),
                   ],
                 ),

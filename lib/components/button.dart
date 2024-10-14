@@ -24,13 +24,14 @@ class MyButton extends StatelessWidget {
           children: [
             Text(
               text,
-              style: GoogleFonts.pacifico(
-                fontSize: 12,
-                color:const Color.fromARGB(255, 0, 0, 0),
+              style: GoogleFonts.merriweather(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color:Theme.of(context).colorScheme.inversePrimary,
               )
               ),
               const SizedBox(width: 10),
-              const Icon(Icons.arrow_forward, color: Colors.white),
+              Icon(Icons.arrow_forward, color: Theme.of(context).colorScheme.inversePrimary),
       
         ],) 
       ),

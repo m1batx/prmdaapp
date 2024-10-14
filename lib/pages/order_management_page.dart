@@ -139,7 +139,7 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                                   //I need to show up phone number here
                                   const SizedBox(height: 15,),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       MyButton(text: "Готовится", onTap: (){
                                         updateOrderStatus(data['order_id'].toString(),OrderStatus.cooking);
@@ -147,15 +147,17 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                                       MyButton(text: "Готово", onTap: (){
                                         updateOrderStatus(data['order_id'].toString(),OrderStatus.done);
                                       }),
-                                      MyButton(text: "Отмена", onTap: (){
-                                        updateOrderStatus(data['order_id'].toString(),OrderStatus.declined);
-                                      }),
+                                      
                                     ]),
                                     // Container(
                                     //   child: MyButton(text: "Связаться", onTap: (){
                                           
                                     //   }),
                                     // ),
+                                  const SizedBox(height: 10,),
+                                  MyButton(text: "Отмена", onTap: (){
+                                        updateOrderStatus(data['order_id'].toString(),OrderStatus.declined);
+                                      }),
                                 ])
                               ),
                             ],
