@@ -46,24 +46,24 @@ class MyDrawer extends StatelessWidget{
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>const ChatPage()));
               },
             ),
-          const Spacer(),
+          
           Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.inversePrimary,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            margin: const EdgeInsets.only(left: 25, top: 10, right: 25,bottom: 20),
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.only(left: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Icon(
+                  Icons.dark_mode,
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
+                SizedBox(width: 10,),
                 Text(
-                  "Темный режим",
+                  "ТЕМНЫЙ РЕЖИМ",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.background
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.inversePrimary
                   ),
                   ),
+                SizedBox(width: 30,),
                 CupertinoSwitch(
                   value: Provider.of<ThemeProvider>(context, listen:false).isDarkMode, 
                   onChanged: (value){
@@ -73,7 +73,7 @@ class MyDrawer extends StatelessWidget{
               ],
             ),
           ),
-          const SizedBox(height: 80,),
+          const Spacer(),
         ],
       ),
     );

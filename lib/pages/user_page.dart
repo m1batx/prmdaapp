@@ -2,7 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:prmda/pages/chat_page.dart';
 import 'package:prmda/pages/login_page.dart';
 import 'package:prmda/pages/my_orders_page.dart';
 import 'package:prmda/pages/order_management_page.dart';

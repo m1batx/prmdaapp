@@ -115,7 +115,7 @@ class _CartPageState extends State<CartPage> {
                             ),
                             padding: const EdgeInsets.all(10),
                             child: const Center(
-                              child: Text('Заказать из Yandex',
+                              child: Text('Заказать через Yandex',
                                 style:  TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:prmda/pages/regstr_page.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
@@ -27,6 +28,9 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_auth.currentUser == null) {
+      return const RegstrPage();
+    }
     return Scaffold(
       appBar: AppBar(title: const Text("Поддержка")),
       body: Column(
@@ -38,7 +42,7 @@ class _ChatPageState extends State<ChatPage> {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return CircularProgressIndicator();
-
+                
                 // Fetch both user and support messages
                 final userMessages = snapshot.data!.docs
                   .where((message) => message['senderId'] == _auth.currentUser!.uid)
@@ -51,6 +55,7 @@ class _ChatPageState extends State<ChatPage> {
                   stream: supportMessagesStream,
                   builder: (context, supportSnapshot) {
                     if (!supportSnapshot.hasData) {
+                      
                       return const Expanded(
                         child: Center(
                           child: CircularProgressIndicator(),

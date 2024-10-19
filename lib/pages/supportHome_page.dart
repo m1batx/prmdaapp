@@ -23,13 +23,12 @@ class SupportHomePage extends StatelessWidget {
               .map((doc) => doc['senderId'] as String)
               .toSet()
               .toList();
-
+          print(users);
           return ListView.builder(
             itemCount: users.length,
             itemBuilder: (context, index) {
               final userId = users[index];
-              if (userId!="support"){
-                return ListTile(
+              return ListTile(
                   title: Text('Пользователь: $userId'),
                   onTap: () {
                     // Navigate to the chat screen with the selected user
@@ -41,10 +40,6 @@ class SupportHomePage extends StatelessWidget {
                     );
                   },
                 );
-              }
-              else{
-                return null;
-              }
             },
           );
         },
