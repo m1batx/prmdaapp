@@ -18,14 +18,17 @@ class _ONasState extends State<ONas> {
   @override
 Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: const Text('О НАС'),
+        title: Text('О НАС', style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
       ),
       body: Expanded(
         child: SingleChildScrollView(
@@ -45,11 +48,11 @@ Widget build(BuildContext context) {
                 ),
                 const SizedBox(height: 20),
                 // Middle section with text
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     '«Пирамида» — современная компания, работающая в сфере быстрого питания. Мы предлагаем широкий ассортимент блюд, а наша команда профессионалов заботится о качестве продукции и сервиса, чтобы удовлетворить вкусы самых взыскательных гостей.',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16,color: Theme.of(context).colorScheme.inversePrimary),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -61,7 +64,7 @@ Widget build(BuildContext context) {
                       child: Container(
                         child: Center(
                           child: Image.network(
-                            'lib/images/angle_2/shrimp 2.jpg', // Replace with your image URL
+                            'lib/images/compressed/shrimp 2.jpeg', // Replace with your image URL
                             fit: BoxFit.cover,
                             height: 250,
                             width: 175,
@@ -77,12 +80,12 @@ Widget build(BuildContext context) {
                           child: Column(
                             children: [
                               Image.network(
-                                'lib/images/angle_2/govyadina na tarelki 2.jpg', // Replace with your image URL
+                                'lib/images/compressed/govyadina na tarelki 2.jpeg', // Replace with your image URL
                                 fit: BoxFit.cover,
                               ),
                               const Spacer(),
                               Image.network(
-                                'lib/images/angle_2/Cirni lavash 2.jpg', // Replace with your image URL
+                                'lib/images/compressed/Cirni lavash 2.jpeg', // Replace with your image URL
                                 fit: BoxFit.cover,
                               ),
                             ],
@@ -93,15 +96,15 @@ Widget build(BuildContext context) {
                   ],
                 ),
                 const SizedBox(height: 25,),
-                const Text(
+                Text(
                   'Наши точки:',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Theme.of(context).colorScheme.inversePrimary),
                 ),
                 const SizedBox(height: 10),
                 ...addresses.map((address) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Text(address),
+                    child: Text(address, style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
                   );
                 }),
               ],

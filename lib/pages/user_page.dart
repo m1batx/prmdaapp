@@ -143,16 +143,7 @@ class UserPage extends StatelessWidget{
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>const SettingsPage()));
               },
             ),
-            ListTile(
-              iconColor: Theme.of(context).colorScheme.inversePrimary,
-              textColor: Theme.of(context).colorScheme.inversePrimary,
-              leading: const Icon(Icons.help),
-              title: const Text('Поддержка'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ChatPage()));
-              },
-            ),
+            
             const Spacer(),
             OrderManage(context),
             chatManage(context),

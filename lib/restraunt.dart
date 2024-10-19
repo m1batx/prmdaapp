@@ -160,7 +160,7 @@ class Restraunt extends ChangeNotifier{
       Food(
       id: 8,
       name: "Шаверма в пите ",
-      ImagePath: "/lib/images/compressed/v pite 2.lpeg",
+      ImagePath: "lib/images/compressed/v_pite_2.jpeg",
       price: 220,
       Description: "Курица, огурцы, помидоры, пекинская капуста, чесночный соус, солёные огурцы, лук красный",
       meatType: MeatType.chicken,
@@ -286,7 +286,7 @@ class Restraunt extends ChangeNotifier{
       Food(
       id: 14,
       name: "Двойная шаверма в пите",
-      ImagePath: "/lib/images/compressed/v pite 2.jpeg",
+      ImagePath: "lib/images/compressed/v_pite_2.jpeg",
       price: 270,
       Description: "Курица, огурцы, помидоры, пекинская капуста, чесночный соус, солёные огурцы, лук красный",
       meatType: MeatType.chicken,

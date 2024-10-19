@@ -39,7 +39,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
     if (!_validateEmail(email)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Неправильный email!')),
+        SnackBar(content: Text('Неправильный email!', style: TextStyle(color: Theme.of(context).colorScheme.background),),
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          ),
       );
       return;
     }
@@ -52,11 +54,16 @@ class _SettingsPageState extends State<SettingsPage> {
         'phone': phone,
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Данные сохранены!')),
+        SnackBar(
+          content: Text('Данные сохранены!', style: TextStyle(color: Theme.of(context).colorScheme.background),),
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          ),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Вы не авторизованы!')),
+        SnackBar(content: Text('Вы не авторизованы!', style: TextStyle(color: Theme.of(context).colorScheme.background),),
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          ),
       );
     }
   }
@@ -65,7 +72,10 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Пользовательские настройки'),
       ),
       body: Padding(
@@ -82,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
               return const HomeScreen();
             }
             else if (!snapshot.hasData || !snapshot.data!.exists) {
-              return const Center(child: Text('Данные пользователя не найдены'));
+              return Center(child: Text('Данные пользователя не найдены', style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),));
             }
             else if (snapshot.hasData){
               var userData = snapshot.data!.data()!;
@@ -92,30 +102,92 @@ class _SettingsPageState extends State<SettingsPage> {
               return Column(
                 children: [
                   TextField(
+                    style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
                     controller: _nameController,
-                    decoration: const InputDecoration(labelText: 'ФИО'),
+                    decoration: InputDecoration(
+                      labelText: 'ФИО', 
+                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          width: 1.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 1.0,
+                        ),
+                      ),
+                      focusColor: Theme.of(context).colorScheme.primary,
+                      fillColor: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                   ),
+                  const SizedBox(height: 15,),
                   TextField(
+                    style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
                     controller: _emailController,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          width: 1.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 1.0,
+                        ),
+                      ),
+                      focusColor: Theme.of(context).colorScheme.primary,
+                      fillColor: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                     keyboardType: TextInputType.emailAddress,
                   ),
+                  const SizedBox(height: 15,),
                   TextField(
+                    style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
                     controller: _phoneController,
-                    decoration: const InputDecoration(labelText: 'Телефон'),
+                    decoration: InputDecoration(
+                      labelText: 'Телефон',
+                      labelStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary,),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          width: 1.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 1.0,
+                        ),
+                      ),
+                      focusColor: Theme.of(context).colorScheme.primary,
+                      fillColor: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                     keyboardType: TextInputType.phone,
                     inputFormatters: [_phoneMask],
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: _saveUserData,
-                    child: const Text('Save'),
+                    child: const Text('Сохранить'),
                   ),
                 ],
               );
             }
             else{
-            return const Text("No data!");
+            return const Text("Данные не найдены!");
           }
           }
         )

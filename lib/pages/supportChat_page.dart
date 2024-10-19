@@ -35,9 +35,9 @@ class _SupportChatPageState extends State<SupportChatPage> {
         decoration: BoxDecoration(
           color: isSupportMessage ? Colors.blueAccent : Colors.grey.shade300,
           borderRadius: BorderRadius.circular(15.0),
-          boxShadow: const [
+          boxShadow:  [
             BoxShadow(
-              color: Colors.black26,
+              color: Theme.of(context).colorScheme.primary,
               blurRadius: 4.0,
               offset: Offset(2, 2),
             ),
@@ -71,7 +71,13 @@ class _SupportChatPageState extends State<SupportChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chat with User: ${widget.userId}')),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        title: Text(
+          'Chat with User: ${widget.userId}',
+          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,),
       body: Column(
         children: [
           Expanded(
@@ -126,7 +132,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
                   child: TextField(
                     controller: _controller,
                     decoration: InputDecoration(
-                      labelText: "Enter your message",
+                      labelText: "Сообщение",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
@@ -136,7 +142,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
                 IconButton(
                   icon: const Icon(Icons.send),
                   onPressed: _sendMessage,
-                  color: Colors.blueAccent,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ],
             ),
