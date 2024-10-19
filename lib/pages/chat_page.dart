@@ -41,8 +41,8 @@ class _ChatPageState extends State<ChatPage> {
                   .collection('chats')
                   .snapshots(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData) return CircularProgressIndicator();
-                
+                if (!snapshot.hasData) return const CircularProgressIndicator();
+
                 // Fetch both user and support messages
                 final userMessages = snapshot.data!.docs
                   .where((message) => message['senderId'] == _auth.currentUser!.uid)
