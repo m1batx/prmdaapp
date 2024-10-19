@@ -85,7 +85,7 @@ class MyCartTile extends StatelessWidget{
                       (addon)=>Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: FilterChip(
-                          backgroundColor:  Theme.of(context).colorScheme.background,
+                          backgroundColor:  Theme.of(context).colorScheme.surface,
                           label: Row(
                             children: [
                               Text(addon.name,

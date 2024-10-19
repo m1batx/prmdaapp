@@ -11,7 +11,7 @@ class MyDrawer extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [
           DrawerHeader(
@@ -51,7 +51,7 @@ class MyDrawer extends StatelessWidget{
                   "Темный режим",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.background
+                    color: Theme.of(context).colorScheme.surface
                   ),
                   ),
                 CupertinoSwitch(

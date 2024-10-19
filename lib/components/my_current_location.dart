@@ -28,7 +28,7 @@ class _MyCurrentLocationState extends State<MyCurrentLocation> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title:  Text(
           "Точки самовывоза", 
           style: TextStyle(
