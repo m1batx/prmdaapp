@@ -40,7 +40,7 @@ Widget build(BuildContext context) {
                 // Top section with an image
                 Container(
                   child: Center(
-                    child: Image.network(
+                    child: Image.asset(
                       'lib/images/sources/aboutus-1.jpeg',
                       fit: BoxFit.cover,
                     ),
@@ -63,7 +63,7 @@ Widget build(BuildContext context) {
                     Expanded(
                       child: Container(
                         child: Center(
-                          child: Image.network(
+                          child: Image.asset(
                             'lib/images/compressed/shrimp 2.jpeg', // Replace with your image URL
                             fit: BoxFit.cover,
                             height: 250,
@@ -79,12 +79,12 @@ Widget build(BuildContext context) {
                         child: Center(
                           child: Column(
                             children: [
-                              Image.network(
+                              Image.asset(
                                 'lib/images/compressed/govyadina na tarelki 2.jpeg', // Replace with your image URL
                                 fit: BoxFit.cover,
                               ),
                               const Spacer(),
-                              Image.network(
+                              Image.asset(
                                 'lib/images/compressed/Cirni lavash 2.jpeg', // Replace with your image URL
                                 fit: BoxFit.cover,
                               ),

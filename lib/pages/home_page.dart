@@ -420,9 +420,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget bannerSlider(){
     final List<String> bannerImages = [
-    'lib/images/sources/i.webp',
-    'lib/images/sources/i-2.webp',
-    'lib/images/sources/i-3.webp',
+    'lib/images/sources/aboutus-1.jpeg',
+    'lib/images/sources/aboutus-2.jpeg',
+    'lib/images/sources/aboutus-3.jpg',
   ];
     return Center(
       child: carousel_slider.CarouselSlider(
