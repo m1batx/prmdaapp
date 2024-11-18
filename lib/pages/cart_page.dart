@@ -219,7 +219,8 @@ class _CartPageState extends State<CartPage> {
                                 height: 30,
                                 child: Center(
                                   child: TextButton(
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
                                       Navigator.pop(context);
                                     },
                                     child: Text("Ок", 
