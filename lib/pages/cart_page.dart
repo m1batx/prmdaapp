@@ -129,6 +129,7 @@ class _CartPageState extends State<CartPage> {
                 padding: const EdgeInsets.all(10),
                 child: MyButton(
                       onTap: () {
+                        FirebaseAuth.instance.currentUser?.reload();
                         if (userCart.isEmpty) {
                           showDialog(
                             context: context,
