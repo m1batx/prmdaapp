@@ -45,19 +45,19 @@ class _HomeScreenState extends State<HomeScreen> {
         items:  [
           Icon(
             Icons.home,
-            color: Theme.of(context).colorScheme.background, 
+            color: Theme.of(context).colorScheme.surface, 
           ),
           Icon(
             Icons.store,
-            color: Theme.of(context).colorScheme.background, 
+            color: Theme.of(context).colorScheme.surface, 
           ),
           Icon(
             Icons.shopping_cart,
-            color: Theme.of(context).colorScheme.background, 
+            color: Theme.of(context).colorScheme.surface, 
           ),
           Icon(
             Icons.account_circle,
-            color: Theme.of(context).colorScheme.background, 
+            color: Theme.of(context).colorScheme.surface, 
           ),
         ],
       ),

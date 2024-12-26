@@ -19,7 +19,7 @@ class FoodTile extends StatelessWidget {
     child: Container(
       child: Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.only(left: 25),

@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
     if (!_validateEmail(email)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Неправильный email!', style: TextStyle(color: Theme.of(context).colorScheme.background),),
+        SnackBar(content: Text('Неправильный email!', style: TextStyle(color: Theme.of(context).colorScheme.surface),),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           ),
       );
@@ -55,13 +55,13 @@ class _SettingsPageState extends State<SettingsPage> {
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Данные сохранены!', style: TextStyle(color: Theme.of(context).colorScheme.background),),
+          content: Text('Данные сохранены!', style: TextStyle(color: Theme.of(context).colorScheme.surface),),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           ),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Вы не авторизованы!', style: TextStyle(color: Theme.of(context).colorScheme.background),),
+        SnackBar(content: Text('Вы не авторизованы!', style: TextStyle(color: Theme.of(context).colorScheme.surface),),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           ),
       );
@@ -72,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.tertiary,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
