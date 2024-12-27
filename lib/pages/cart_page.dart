@@ -25,9 +25,9 @@ class _CartPageState extends State<CartPage> {
         final userCart = restraunt.cart;
 
         return Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             title:  Text(
               "Корзина",
               style: TextStyle(
@@ -134,7 +134,7 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              backgroundColor: Theme.of(context).colorScheme.background,
+                              backgroundColor: Theme.of(context).colorScheme.surface,
                               title:  Text(
                                 "Корзина пуста",
                                 style: TextStyle(
@@ -160,7 +160,7 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              backgroundColor: Theme.of(context).colorScheme.background,
+                              backgroundColor: Theme.of(context).colorScheme.surface,
                               title:  Text("Адрес не выбран", 
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.inversePrimary
@@ -185,7 +185,7 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              backgroundColor: Theme.of(context).colorScheme.background,
+                              backgroundColor: Theme.of(context).colorScheme.surface,
                               title: Text("Вы не вошли", 
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.inversePrimary
@@ -211,7 +211,7 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              backgroundColor: Theme.of(context).colorScheme.background,
+                              backgroundColor: Theme.of(context).colorScheme.surface,
                               title: Text("Подтвердите почту", 
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.inversePrimary
@@ -238,7 +238,7 @@ class _CartPageState extends State<CartPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              backgroundColor: Theme.of(context).colorScheme.background,
+                              backgroundColor: Theme.of(context).colorScheme.surface,
                               title:  Text("Подтверждение заказа", 
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.inversePrimary

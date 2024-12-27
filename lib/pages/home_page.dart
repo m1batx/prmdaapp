@@ -454,12 +454,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       resizeToAvoidBottomInset: false,
       drawer: const MyDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).colorScheme.inversePrimary,),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         elevation: 0,
         // HAVE TO UPDATE
         title: Stack(
