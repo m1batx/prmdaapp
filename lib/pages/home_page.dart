@@ -462,22 +462,21 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         // HAVE TO UPDATE
-        title: const Stack(
+        title: Stack(
           children: [
             Center(
               child: Padding(
-                padding: EdgeInsets.only(right: 20.0), // Adjust the padding to move the logo
-                child: CircleAvatar(
-                  radius: 20, // Adjust the radius as needed
-                  backgroundColor: Colors.transparent, // Background color of the CircleAvatar
-                  backgroundImage: AssetImage('lib/images/logo.png'), // Local image asset
-                ),
+                padding: const EdgeInsets.only(right: 20.0), // Adjust the padding to move the logo
+                child: Image.asset(
+                  'lib/images/logo.png',
+                  fit: BoxFit.fitHeight,
+                  width: 50,),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             
             
-            ClipRRect(),
+            const ClipRRect(),
             
           ],
         ),

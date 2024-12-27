@@ -30,8 +30,7 @@ Widget build(BuildContext context) {
         ),
         title: Text('О НАС', style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
       ),
-      body: Expanded(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -111,8 +110,7 @@ Widget build(BuildContext context) {
             ),
           ),
         )
-        )
-    );
+      );
   }
 }
 
