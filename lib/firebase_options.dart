@@ -46,7 +46,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '593037562166',
     projectId: 'prmda-27af3',
     authDomain: 'prmda-27af3.firebaseapp.com',
-    databaseURL: 'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prmda-27af3.appspot.com',
     measurementId: 'G-72XS75K1H6',
   );
@@ -56,7 +57,8 @@ class DefaultFirebaseOptions {
     appId: '1:593037562166:android:37536778ce675885306397',
     messagingSenderId: '593037562166',
     projectId: 'prmda-27af3',
-    databaseURL: 'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prmda-27af3.appspot.com',
   );
 
@@ -65,9 +67,10 @@ class DefaultFirebaseOptions {
     appId: '1:593037562166:ios:c35cd499543d4383306397',
     messagingSenderId: '593037562166',
     projectId: 'prmda-27af3',
-    databaseURL: 'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prmda-27af3.appspot.com',
-    iosBundleId: 'com.example.prmda',
+    iosBundleId: 'com.MTeam.prmda',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -75,9 +78,10 @@ class DefaultFirebaseOptions {
     appId: '1:593037562166:ios:c35cd499543d4383306397',
     messagingSenderId: '593037562166',
     projectId: 'prmda-27af3',
-    databaseURL: 'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prmda-27af3.appspot.com',
-    iosBundleId: 'com.example.prmda',
+    iosBundleId: 'com.MTeam.prmda',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
@@ -86,9 +90,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '593037562166',
     projectId: 'prmda-27af3',
     authDomain: 'prmda-27af3.firebaseapp.com',
-    databaseURL: 'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prmda-27af3-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prmda-27af3.appspot.com',
     measurementId: 'G-GGT2Q1HWFH',
   );
-
 }

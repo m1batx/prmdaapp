@@ -1,4 +1,4 @@
-package com.example.prmda
+package com.MTeam.prmda
 
 import io.flutter.embedding.android.FlutterActivity
 
