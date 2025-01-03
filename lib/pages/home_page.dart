@@ -468,16 +468,12 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 20.0), // Adjust the padding to move the logo
                 child: Image.asset(
-                  'lib/images/logo.png',
+                  "lib/images/logo.png",
                   fit: BoxFit.fitHeight,
-                  width: 50,),
+                  width: 50 // Ensure the image scales properly
+                ),
               ),
             ),
-            const Spacer(),
-            
-            
-            const ClipRRect(),
-            
           ],
         ),
         actions: [
