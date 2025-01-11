@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:prmda/components/button.dart';
 import 'package:prmda/home_screen.dart';
 
 class SettingsPage extends StatefulWidget{
@@ -30,6 +31,14 @@ class _SettingsPageState extends State<SettingsPage> {
    bool _validateEmail(String email) {
     final emailRegExp = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
     return emailRegExp.hasMatch(email);
+  }
+
+  void _deleteUser() async{
+    _auth.currentUser!.delete();
+    _auth.signOut();
+    Navigator.pop(context);
+    Navigator.pop(context);
+    // Navigator.pushNamed(context, '/homepage');
   }
 
   void _saveUserData() async {
@@ -183,6 +192,43 @@ class _SettingsPageState extends State<SettingsPage> {
                     onPressed: _saveUserData,
                     child: const Text('Сохранить'),
                   ),
+                  const Spacer(),
+                  MyButton(
+                    text: "Удалить аккаунт", 
+                    onTap: (){
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title:  Text(
+                            'Вы уверены?',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.inversePrimary, 
+                            ),),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                _deleteUser();
+                              },
+                              child:  Text(
+                                "Да",
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.inversePrimary, 
+                                ),),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child:  Text(
+                                "Нет", 
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary
+                                )
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  )
                 ],
               );
             }
