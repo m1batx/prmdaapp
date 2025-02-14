@@ -48,7 +48,7 @@ Widget build(BuildContext context) {
                 const SizedBox(height: 20),
                 // Middle section with text
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     '«Пирамида» — современная компания, работающая в сфере быстрого питания. Мы предлагаем широкий ассортимент блюд, а наша команда профессионалов заботится о качестве продукции и сервиса, чтобы удовлетворить вкусы самых взыскательных гостей.',
                     style: TextStyle(fontSize: 16,color: Theme.of(context).colorScheme.inversePrimary),

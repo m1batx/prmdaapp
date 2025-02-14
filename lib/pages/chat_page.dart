@@ -145,7 +145,7 @@ class _ChatPageState extends State<ChatPage> {
                 ),
                 IconButton(
                   color: Theme.of(context).colorScheme.inversePrimary,
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: _sendMessage,
                 ),
               ],

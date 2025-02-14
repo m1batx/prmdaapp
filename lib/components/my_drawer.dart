@@ -55,7 +55,7 @@ class MyDrawer extends StatelessWidget{
                   Icons.dark_mode,
                   color: Theme.of(context).colorScheme.inversePrimary,
                 ),
-                SizedBox(width: 10,),
+                const SizedBox(width: 10,),
                 Text(
                   "ТЕМНЫЙ РЕЖИМ",
                   style: TextStyle(
@@ -63,7 +63,7 @@ class MyDrawer extends StatelessWidget{
                     color: Theme.of(context).colorScheme.inversePrimary
                   ),
                   ),
-                SizedBox(width: 30,),
+                const SizedBox(width: 30,),
                 CupertinoSwitch(
                   value: Provider.of<ThemeProvider>(context, listen:false).isDarkMode, 
                   onChanged: (value){

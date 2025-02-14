@@ -39,7 +39,7 @@ class _SupportChatPageState extends State<SupportChatPage> {
             BoxShadow(
               color: Theme.of(context).colorScheme.primary,
               blurRadius: 4.0,
-              offset: Offset(2, 2),
+              offset: const Offset(2, 2),
             ),
           ],
         ),

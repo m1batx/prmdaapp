@@ -40,11 +40,11 @@ dependencies:
   firebase_core: ^3.2.0
   cloud_firestore: ^5.1.0
   curved_navigation_bar: ^1.0.3
-  flutter_local_notifications : ^17.2.4
+  flutter_local_notifications : ^18.0.1
   provider: ^6.1.2
-  intl: ^0.19.0
+  intl: ^0.20.2
   carousel_slider: ^5.0.0
-  flutter_svg: ^1.0.3
+  flutter_svg: ^2.0.17
   connectivity_plus: ^6.1.1
   collection: any
   firebase_messaging: ^15.1.0
@@ -73,7 +73,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

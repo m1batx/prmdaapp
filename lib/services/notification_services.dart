@@ -4,23 +4,30 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class NotificationServices{
   final FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  Future<void> initNotification() async{
-    AndroidInitializationSettings initializationSettingsAndroid = const AndroidInitializationSettings("logo.png");
-    var initializationSettingsIOS = DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestCriticalPermission: true,
-      onDidReceiveLocalNotification: 
-        (int id, String? title, String? body, String? payload) async{});
+  Future<void> initNotification() async {
+  AndroidInitializationSettings initializationSettingsAndroid =
+      const AndroidInitializationSettings("logo.png");
 
-    var initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS
-    );
-    await notificationsPlugin.initialize(initializationSettings, 
-      onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) async {}
-    );
-  }
+  var initializationSettingsIOS = const DarwinInitializationSettings(
+    requestAlertPermission: true,
+    requestBadgePermission: true,
+    requestCriticalPermission: true, 
+  );
+
+  var initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: initializationSettingsIOS,
+  );
+
+  await notificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse:
+        (NotificationResponse notificationResponse) async {
+      // Обработка уведомления
+    },
+  );
+}
+
 
 
   notificationDetails(){
